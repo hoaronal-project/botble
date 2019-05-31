@@ -1,4 +1,4 @@
-@include('main::home.new_feature')
-@include('main::home.category_new')
-@include('main::home.video')
-@include('main::home.supscriber')
+@includeIf('main::views.home.new_feature')
+@includeIf('main::views.home.category_new')
+@includeIf('main::views.home.video')
+@includeIf('main::views.home.supscriber')

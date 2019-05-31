@@ -1,2 +1,2 @@
 @includeIf('plugins/blog::blog.layouts.entity_section')
-@includeIf('main::home.supscriber')
+@includeIf('main::views.home.supscriber')

@@ -1,3 +1,4 @@
+
 <section id="header_section_wrapper" class="header_section_wrapper">
     <div class="container">
         <div class="header-section">
@@ -30,8 +31,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="logo">
-                        <a href="{{route('public.index') ?? 'javascript:;'}}"><img src="{{asset('assets/img/logo.png')}}"
-                                                                 alt="Tech NewsLogo"></a>
+                        <a href="{{route('public.index') ?? 'javascript:;'}}"><img
+                                src="{{asset('assets/img/logo.png')}}"
+                                alt="Tech NewsLogo"></a>
                     </div>
                     <!-- Logo Section -->
                 </div>
@@ -101,38 +103,19 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="m-menu-content">
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header"><a href="">Laravel</a></li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header"><a href="">Javascript</a></li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header"><a href="">Css</a></li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
-                                            <ul class="col-sm-3">
-                                                <li class="dropdown-header"><a href="">Node</a></li>
-                                                <li><a href="#">Awesome Features</a></li>
-                                                <li><a href="#">Clean Interface</a></li>
-                                                <li><a href="#">Available Possibilities</a></li>
-                                                <li><a href="#">Responsive Design</a></li>
-                                                <li><a href="#">Pixel Perfect Graphics</a></li>
-                                            </ul>
+                                            @isset($listCategories)
+                                                @foreach($listCategories as $category)
+                                                    <ul class="col-sm-3">
+                                                        <li class="dropdown-header"><a href="{{route('public.categories')?? ''}}/{{$category->slug ?? ''}}">{{$category->name ?? ''}}</a>
+                                                        </li>
+                                                        <li><a href="#">Awesome Features</a></li>
+                                                        <li><a href="#">Clean Interface</a></li>
+                                                        <li><a href="#">Available Possibilities</a></li>
+                                                        <li><a href="#">Responsive Design</a></li>
+                                                        <li><a href="#">Pixel Perfect Graphics</a></li>
+                                                    </ul>
+                                                @endforeach
+                                            @endisset
                                         </div>
                                     </li>
                                 </ul>

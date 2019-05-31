@@ -75,7 +75,7 @@ class BlogServiceProvider extends ServiceProvider
         if (defined('MEMBER_MODULE_SCREEN_NAME')) {
             $this->loadRoutes(['member']);
         }
-
+        $this->loadViewsFrom(__DIR__ . '/../../../../themes/general', 'main');
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(HookServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
@@ -145,6 +145,11 @@ class BlogServiceProvider extends ServiceProvider
             'plugins/blog::themes.tag',
         ], function (View $view) {
             $view->withShortcodes();
+        });
+        \View::composer('main::layouts.default', function ($view) {
+            $params = [];
+            $params['listCategories'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getListCategories();
+            return $view->with($params);
         });
     }
 }

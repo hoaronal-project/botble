@@ -4,7 +4,6 @@ namespace Botble\Blog\Http\Controllers;
 use Botble\ACL\Repositories\Interfaces\UserInterface;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Blog\Repositories\Eloquent\BlogRepositories;
-use Botble\Blog\Repositories\Eloquent\CategoryRepository;
 use Botble\Blog\Repositories\Interfaces\PostInterface;
 use Botble\Blog\Repositories\Interfaces\TagInterface;
 use Botble\SeoHelper\SeoOpenGraph;
@@ -138,10 +137,9 @@ class PublicController extends Controller
      * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function getCategories(BlogRepositories $blogRepositories)
+    public function getCategories()
     {
         $params = [];
-//        $params['categories'] = $blogRepositories->getListCategories();
         return Theme::scope('category_index', compact('params'), 'plugins/blog::categories.category_index')->render();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Botble\Member\Providers;
 
-use Illuminate\Routing\Events\RouteMatched;
 use Botble\Base\Supports\Helper;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
 use Botble\Member\Http\Middleware\RedirectIfMember;
@@ -16,6 +15,7 @@ use Botble\Member\Repositories\Eloquent\MemberRepository;
 use Botble\Member\Repositories\Interfaces\MemberActivityLogInterface;
 use Botble\Member\Repositories\Interfaces\MemberInterface;
 use Event;
+use Illuminate\Routing\Events\RouteMatched;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,26 +29,26 @@ class MemberServiceProvider extends ServiceProvider
     protected $app;
 
     /**
-     * 
+     *
      */
     public function register()
     {
         config([
-            'auth.guards.member'     => [
-                'driver'   => 'session',
+            'auth.guards.member' => [
+                'driver' => 'session',
                 'provider' => 'members',
             ],
             'auth.providers.members' => [
                 'driver' => 'eloquent',
-                'model'  => Member::class,
+                'model' => Member::class,
             ],
             'auth.passwords.members' => [
                 'provider' => 'members',
-                'table'    => 'member_password_resets',
-                'expire'   => 60,
+                'table' => 'member_password_resets',
+                'expire' => 60,
             ],
             'auth.guards.member-api' => [
-                'driver'   => 'passport',
+                'driver' => 'passport',
                 'provider' => 'members',
             ],
         ]);
@@ -73,7 +73,7 @@ class MemberServiceProvider extends ServiceProvider
     }
 
     /**
-     * 
+     *
      */
     public function boot()
     {
@@ -85,19 +85,17 @@ class MemberServiceProvider extends ServiceProvider
             ->loadMigrations()
             ->publishAssetsFolder()
             ->publishPublicFolder();
-        $this->loadViewsFrom(__DIR__ . '/../../../../themes/general/views', 'main');
         Event::listen(RouteMatched::class, function () {
             dashboard_menu()->registerItem([
-                'id'          => 'cms-core-member',
-                'priority'    => 22,
-                'parent_id'   => null,
-                'name'        => 'plugins/member::member.menu_name',
-                'icon'        => 'fa fa-users',
-                'url'         => route('member.list'),
+                'id' => 'cms-core-member',
+                'priority' => 22,
+                'parent_id' => null,
+                'name' => 'plugins/member::member.menu_name',
+                'icon' => 'fa fa-users',
+                'url' => route('member.list'),
                 'permissions' => ['member.list'],
             ]);
         });
-
         $this->app->register(EventServiceProvider::class);
     }
 }
