@@ -66,7 +66,6 @@ class PublicController extends Controller
                 }
             }
         }
-
         Theme::breadcrumb()->add(__('Home'), url('/'));
 
         return Theme::scope('index')->render();
@@ -123,4 +122,5 @@ class PublicController extends Controller
 
         return JsonFeedManager::render();
     }
+
 }

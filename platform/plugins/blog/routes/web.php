@@ -127,10 +127,12 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                 'permission' => 'tags.list',
             ]);
         });
+
     });
 
     if (defined('THEME_MODULE_SCREEN_NAME')) {
         Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
+
             Route::get('search', [
                 'as'   => 'public.search',
                 'uses' => 'PublicController@getSearch',
@@ -144,6 +146,12 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
             Route::get('tag/{slug}', [
                 'as'   => 'public.tag',
                 'uses' => 'PublicController@getTag',
+            ]);
+        });
+        Route::group(['middleware' => 'web'], function (){
+            Route::get('blog', [
+                'as' => 'public.blog',
+                'uses' => 'PublicController@getBlog'
             ]);
         });
     }

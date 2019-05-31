@@ -1,5 +1,4 @@
 <?php
-
 namespace Botble\Blog\Http\Controllers;
 
 use Botble\ACL\Repositories\Interfaces\UserInterface;
@@ -86,6 +85,7 @@ class PublicController extends Controller
 
     /**
      * @param string $slug
+     * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function getTag($slug)
@@ -117,5 +117,16 @@ class PublicController extends Controller
         do_action(BASE_ACTION_PUBLIC_RENDER_SINGLE, TAG_MODULE_SCREEN_NAME, $tag);
 
         return Theme::scope('tag', compact('tag', 'posts'), 'plugins/blog::themes.tag')->render();
+    }
+
+    /**
+     * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function getBlog()
+    {
+        $params = [];
+        $params['a'] = 13246564;
+        return Theme::scope('blog_index', compact('params'), 'plugins/blog::blog.blog_index')->render();
     }
 }

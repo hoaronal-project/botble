@@ -9,5 +9,4 @@ Route::group(['namespace' => 'Theme\General\Http\Controllers', 'middleware' => '
         ]);
 
     });
-
 });

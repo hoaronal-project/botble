@@ -85,7 +85,7 @@ class MemberServiceProvider extends ServiceProvider
             ->loadMigrations()
             ->publishAssetsFolder()
             ->publishPublicFolder();
-
+        $this->loadViewsFrom(__DIR__ . '/../../../../themes/general/views', 'main');
         Event::listen(RouteMatched::class, function () {
             dashboard_menu()->registerItem([
                 'id'          => 'cms-core-member',
