@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <p>&copy; Copyright 2016-Tech News . Design by: <a href="https://uicookies.com">uiCookies</a> </p>
+                        <p>&copy; Copyright {{Carbon\Carbon::now()->year}}-iSHARE . Design by: <a href="{{route('public.index') ?? 'javascript:;'}}">iSHARE DESIGN.</a> </p>
                     </div>
                     <div class="col-sm-3">
                         <p>Technology News Magazine</p>

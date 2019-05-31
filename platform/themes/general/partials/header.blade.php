@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="logo">
-                        <a href="{{route('public.index')}}"><img src="{{asset('assets/img/logo.png')}}"
+                        <a href="{{route('public.index') ?? 'javascript:;'}}"><img src="{{asset('assets/img/logo.png')}}"
                                                                  alt="Tech NewsLogo"></a>
                     </div>
                     <!-- Logo Section -->
@@ -38,8 +38,8 @@
                 <div class="col-md-4">
                     <div class="right_section">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{route('public.member.login')}}">Login</a></li>
-                            <li><a href="{{route('public.member.register')}}">Register</a></li>
+                            <li><a href="{{route('public.member.login') ?? 'javascript:;'}}">Login</a></li>
+                            <li><a href="{{route('public.member.register') ?? 'javascript:;'}}">Register</a></li>
                             <li class="dropdown lang">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">En <i
@@ -93,8 +93,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
-                            <li class="active"><a href="{{route('public.index')}}">Home</a></li>
-                            <li><a href="{{route('public.blog')}}">Post</a></li>
+                            <li class="active"><a href="{{route('public.index') ?? 'javascript:;'}}">Home</a></li>
+                            <li><a href="{{route('public.blog') ?? 'javascript:;'}}">Post</a></li>
 
                             <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Categories
                                     <span><i class="fa fa-angle-down"></i></span></a>

@@ -3,6 +3,7 @@
 namespace Botble\Blog\Repositories\Eloquent;
 
 use Botble\Base\Enums\BaseStatusEnum;
+use Botble\Blog\Models\Category;
 use Botble\Support\Repositories\Eloquent\RepositoriesAbstract;
 use Botble\Blog\Repositories\Interfaces\CategoryInterface;
 use Eloquent;
@@ -130,4 +131,5 @@ class CategoryRepository extends RepositoriesAbstract implements CategoryInterfa
 
         return $this->applyBeforeExecuteQuery($data, $this->screen)->get();
     }
+
 }

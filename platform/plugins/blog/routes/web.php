@@ -153,6 +153,10 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                 'as' => 'public.blog',
                 'uses' => 'PublicController@getBlog'
             ]);
+            Route::get('{categories?}', [
+                'as' => 'public.categories',
+                'uses' => 'PublicController@getCategories'
+            ]);
         });
     }
 });
