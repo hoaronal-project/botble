@@ -1,4 +1,3 @@
-
 <section id="header_section_wrapper" class="header_section_wrapper">
     <div class="container">
         <div class="header-section">
@@ -106,7 +105,8 @@
                                             @isset($listCategories)
                                                 @foreach($listCategories as $category)
                                                     <ul class="col-sm-3">
-                                                        <li class="dropdown-header"><a href="{{route('public.categories')?? ''}}/{{$category->slug ?? ''}}">{{$category->name ?? ''}}</a>
+                                                        <li class="dropdown-header"><a
+                                                                href="{{route('public.categories',['tags' => $category->slug ?? ''])}}">{{$category->name ?? ''}}</a>
                                                         </li>
                                                         <li><a href="#">Awesome Features</a></li>
                                                         <li><a href="#">Clean Interface</a></li>

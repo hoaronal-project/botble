@@ -148,16 +148,16 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                 'uses' => 'PublicController@getTag',
             ]);
         });
-        Route::group(['middleware' => 'web'], function (){
+        Route::group(['middleware' => ['web','member.guest']], function (){
             Route::get('blog', [
                 'as' => 'public.blog',
                 'uses' => 'PublicController@getBlog'
             ]);
-            Route::get('tags/{categories?}', [
+            Route::get('tags/{tags}', [
                 'as' => 'public.categories',
                 'uses' => 'PublicController@getCategories'
             ]);
-            Route::get('{category}/{slug}', [
+            Route::get('post/{slug?}', [
                 'as' => 'public.blog.details',
                 'uses' => 'PublicController@getBlogDetails'
             ]);

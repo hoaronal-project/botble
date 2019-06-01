@@ -136,7 +136,7 @@ class PublicController extends Controller
      * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function getCategories()
+    public function getCategories($tags)
     {
         $params = [];
         return Theme::scope('category_index', compact('params'), 'plugins/blog::categories.category_index')->render();
