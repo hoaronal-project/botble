@@ -1741,3 +1741,9 @@ section {
     background-color: rgb(49, 160, 177);
     color: #fff;
 }
+.post-image{
+    width: 115px;
+    height: 115px;
+    margin: 10px;
+    object-fit: cover;
+}

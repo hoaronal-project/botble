@@ -7,6 +7,7 @@ use Botble\Base\Events\RenderingSingleEvent;
 use Botble\Base\Events\RenderingSiteMapEvent;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Base\Supports\MembershipAuthorization;
+use Botble\Blog\Repositories\Eloquent\BlogRepositories;
 use Botble\Page\Repositories\Interfaces\PageInterface;
 use Botble\Setting\Supports\SettingStore;
 use Botble\Slug\Repositories\Interfaces\SlugInterface;
@@ -45,16 +46,16 @@ class PublicController extends Controller
      * @param SettingStore $settingStore
      * @param MembershipAuthorization $authorization
      * @param BaseHttpResponse $response
+     * @param BlogRepositories $blogRepositories
      * @return mixed
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
      */
     public function getIndex(
         SettingStore $settingStore,
         MembershipAuthorization $authorization,
-        BaseHttpResponse $response
-    )
-    {
+        BaseHttpResponse $response,
+        BlogRepositories $blogRepositories
+    ) {
         $authorization->authorize();
 
         if (defined('PAGE_MODULE_SCREEN_NAME')) {
@@ -67,8 +68,16 @@ class PublicController extends Controller
             }
         }
         Theme::breadcrumb()->add(__('Home'), url('/'));
-
-        return Theme::scope('index')->render();
+        $params = [];
+        $params['feature_news'] = $blogRepositories->getFeaturedPost(1);
+        $params['feature_news_js'] = $blogRepositories->getFeaturedPost(2);
+        $params['feature_news_css'] = $blogRepositories->getFeaturedPost(3);
+        $params['feature_news_ruby'] = $blogRepositories->getFeaturedPost(4);
+        if (!empty($params)):
+            return Theme::scope('index', $params)->render();
+        else:
+            return abort(404);
+        endif;
     }
 
     /**

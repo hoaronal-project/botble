@@ -70,6 +70,7 @@ class Post extends Eloquent
         'status',
         'author_id',
         'author_type',
+        'image_link'
     ];
 
     /**

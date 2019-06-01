@@ -60,6 +60,14 @@ class PostForm extends FormAbstract
                     'data-counter' => 120,
                 ],
             ])
+            ->add('image_link', 'text', [
+                'label'      => trans('core/base::forms.image_link'),
+                'label_attr' => ['class' => 'control-label'],
+                'attr'       => [
+                    'placeholder'  => trans('core/base::forms.image_link_placeholder'),
+                    'data-counter' => 120,
+                ],
+            ])
             ->add('description', 'textarea', [
                 'label'      => trans('core/base::forms.description'),
                 'label_attr' => ['class' => 'control-label'],
