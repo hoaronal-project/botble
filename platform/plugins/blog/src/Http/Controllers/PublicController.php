@@ -133,7 +133,6 @@ class PublicController extends Controller
 
     /**
      * Get view of Categories page
-     * @param BlogRepositories $blogRepositories
      * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
@@ -141,5 +140,11 @@ class PublicController extends Controller
     {
         $params = [];
         return Theme::scope('category_index', compact('params'), 'plugins/blog::categories.category_index')->render();
+    }
+
+    public function getBlogDetails()
+    {
+        $params =[];
+        return Theme::scope('index_details',compact('params'),'plugins/blog::details.index_details')->render();
     }
 }
