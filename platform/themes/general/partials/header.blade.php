@@ -108,11 +108,10 @@
                                                         <li class="dropdown-header"><a
                                                                 href="{{route('public.categories',['tags' => $category->slug ?? ''])}}">{{$category->name ?? ''}}</a>
                                                         </li>
-                                                        <li><a href="#">Awesome Features</a></li>
-                                                        <li><a href="#">Clean Interface</a></li>
-                                                        <li><a href="#">Available Possibilities</a></li>
-                                                        <li><a href="#">Responsive Design</a></li>
-                                                        <li><a href="#">Pixel Perfect Graphics</a></li>
+                                                        @php($posts = $category->posts)
+                                                        @foreach($posts as $post)
+                                                            <li><a href="#">{{str_limit($post->name,25) ?? 'Updating'}}</a></li>
+                                                        @endforeach
                                                     </ul>
                                                 @endforeach
                                             @endisset

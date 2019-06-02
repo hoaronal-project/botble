@@ -1747,3 +1747,11 @@ section {
     margin: 10px;
     object-fit: cover;
 }
+.clear-fix:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

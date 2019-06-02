@@ -28,7 +28,7 @@
 
                                         <div class="category_article_title">
                                             <h2><a href="javascript:;"
-                                                   target="_self">{{$feature_news['top_views']->name ?? 'Updating'}}</a>
+                                                   target="_self">{{str_limit($feature_news['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
                                         <!----category_article_title------>
@@ -39,7 +39,7 @@
                                         </div>
                                         <!----category_article_date------>
                                         <div class="category_article_content">
-                                            {{$feature_news['top_views']->description ?? 'Updating'}}
+                                            {{str_limit($feature_news['top_views']->description,90) ?? 'Updating'}}
                                         </div>
                                         <!----category_article_content------>
                                         <div class="media_social">
@@ -117,7 +117,7 @@
 
                                         <div class="category_article_title">
                                             <h2><a href="javascript:;"
-                                                   target="_self">{{$feature_news_js['top_views']->name ?? 'Updating'}}</a>
+                                                   target="_self">{{str_limit($feature_news_js['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
                                         <!----category_article_title------>
@@ -128,7 +128,7 @@
                                         </div>
                                         <!----category_article_date------>
                                         <div class="category_article_content">
-                                            {{$feature_news['top_views']->description ?? 'Updating'}}
+                                            {{str_limit($feature_news['top_views']->description,90) ?? 'Updating'}}
                                         </div>
                                         <!----category_article_content------>
                                         <div class="media_social">
@@ -206,7 +206,7 @@
 
                                         <div class="category_article_title">
                                             <h2><a href="javascript:;"
-                                                   target="_self">{{$feature_news_css['top_views']->name ?? 'Updating'}}</a>
+                                                   target="_self">{{str_limit($feature_news_css['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
                                         <!----category_article_title------>
@@ -217,7 +217,7 @@
                                         </div>
                                         <!----category_article_date------>
                                         <div class="category_article_content">
-                                            {{$feature_news_css['top_views']->description ?? 'Updating'}}
+                                            {{str_limit($feature_news_css['top_views']->description,90) ?? 'Updating'}}
                                         </div>
                                         <!----category_article_content------>
                                         <div class="media_social">
@@ -295,7 +295,7 @@
 
                                         <div class="category_article_title">
                                             <h2><a href="javascript:;"
-                                                   target="_self">{{$feature_news_ruby['top_views']->name ?? 'Updating'}}</a>
+                                                   target="_self">{{str_limit($feature_news_ruby['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
                                         <!----category_article_title------>
@@ -306,7 +306,7 @@
                                         </div>
                                         <!----category_article_date------>
                                         <div class="category_article_content">
-                                            {{$feature_news_ruby['top_views']->description ?? 'Updating'}}
+                                            {{str_limit($feature_news_ruby['top_views']->description,90) ?? 'Updating'}}
                                         </div>
                                         <!----category_article_content------>
                                         <div class="media_social">

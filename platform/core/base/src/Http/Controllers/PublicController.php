@@ -73,6 +73,7 @@ class PublicController extends Controller
         $params['feature_news_js'] = $blogRepositories->getFeaturedPost(2);
         $params['feature_news_css'] = $blogRepositories->getFeaturedPost(3);
         $params['feature_news_ruby'] = $blogRepositories->getFeaturedPost(4);
+        $params['top_view'] = $blogRepositories->getPostTopViews();
         if (!empty($params)):
             return Theme::scope('index', $params)->render();
         else:

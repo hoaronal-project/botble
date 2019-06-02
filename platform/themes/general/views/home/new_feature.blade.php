@@ -9,118 +9,94 @@
                     </div>
                     <!-- feature_article_img -->
 
-                    <div class="feature_article_inner">
-                        <div class="tag_lg red"><a href="category.html">Hot News</a></div>
-                        <div class="feature_article_title">
-                            <h1><a href="single.html" target="_self">Chevrolet car-saving technology delivers </a></h1>
-                        </div>
-                        <!-- feature_article_title -->
-
-                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#"
-                                                                                                        target="_self">Aug
-                                4, 2015</a></div>
-                        <!-- feature_article_date -->
-
-                        <div class="feature_article_content">
-                            In a move to address mounting concerns about security on Android, Google and Samsung are
-                            now issuing.
-                        </div>
-                        <!-- feature_article_content -->
-
-                        <div class="article_social">
-                            <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- feature_article_inner -->
 
                 </div>
                 <!-- feature_article_wrapper -->
 
             </div>
             <!-- col-md-7 -->
+            @isset($top_view)
+                <div class="col-md-5">
+                    <div class="feature_static_wrapper">
+                        <div class="feature_article_img">
+                            <img class="img-responsive" src="{{asset($top_view[0]->image_link ?? '')}}"
+                                 alt="feature-top">
+                        </div>
+                        <!-- feature_article_img -->
 
-            <div class="col-md-5">
-                <div class="feature_static_wrapper">
-                    <div class="feature_article_img">
-                        <img class="img-responsive" src="assets/img/feature-static1.jpg" alt="feature-top">
+                        <div class="feature_article_inner clear-fix">
+                            <div class="tag_lg purple"><a href="javascript:;">Top Viewed</a></div>
+                            <div class="feature_article_title">
+                                <h1><a href="javascript:;" target="_self">{{str_limit($top_view[0]->name,25) ?? ''}}</a></h1>
+                            </div>
+                            <!-- feature_article_title -->
+
+                            <div class="feature_article_date"><a href="#"
+                                                                 target="_self">{{$top_view[0]->author->first_name.' '.$top_view[0]->author->last_name}}</a>,<a
+                                    href="#"
+                                    target="_self">{{$top_view[0]->created_at->toDateString()}}</a></div>
+                            <!-- feature_article_date -->
+
+                            <div class="feature_article_content">
+                                {{str_limit($top_view[0]->description,70) ?? ''}}
+                            </div>
+                            <!-- feature_article_content -->
+
+                            <div class="article_social">
+                                <span><i class="fa fa-eye"></i><a href="javascript:;">{{$top_view[0]->views ?? 0}}</a>Views</span>
+                                <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
+                            </div>
+                            <!-- article_social -->
+
+                        </div>
+                        <!-- feature_article_inner -->
+
                     </div>
-                    <!-- feature_article_img -->
-
-                    <div class="feature_article_inner">
-                        <div class="tag_lg purple"><a href="category.html">Top Viewed</a></div>
-                        <div class="feature_article_title">
-                            <h1><a href="single.html" target="_self">Alcatel's $180 Idol 3 4.7 is a </a></h1>
-                        </div>
-                        <!-- feature_article_title -->
-
-                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#"
-                                                                                                        target="_self">Aug
-                                4, 2015</a></div>
-                        <!-- feature_article_date -->
-
-                        <div class="feature_article_content">
-                            In a move to address mounting concerns about security on Android...
-                        </div>
-                        <!-- feature_article_content -->
-
-                        <div class="article_social">
-                            <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- feature_article_inner -->
+                    <!-- feature_static_wrapper -->
 
                 </div>
-                <!-- feature_static_wrapper -->
+                <!-- col-md-5 -->
 
-            </div>
-            <!-- col-md-5 -->
+                <div class="col-md-5">
+                    <div class="feature_static_last_wrapper">
+                        <div class="feature_article_img">
+                            <img class="img-responsive" src="{{asset($top_view[1]->image_link ?? '')}}"
+                                 alt="feature-top">
+                        </div>
+                        <!-- feature_article_img -->
 
-            <div class="col-md-5">
-                <div class="feature_static_last_wrapper">
-                    <div class="feature_article_img">
-                        <img class="img-responsive" src="assets/img/feature-static2.jpg" alt="feature-top">
+                        <div class="feature_article_inner clear-fix">
+                            <div class="tag_lg purple"><a href="javascript:;">Top Viewed</a></div>
+                            <div class="feature_article_title">
+                                <h1><a href="javascript:;" target="_self">{{str_limit($top_view[1]->name,25) ?? ''}}</a></h1>
+                            </div>
+                            <!-- feature_article_title -->
+
+                            <div class="feature_article_date"><a href="#"
+                                                                 target="_self">{{$top_view[1]->author->first_name.' '.$top_view[1]->author->last_name}}</a>,<a
+                                    href="#"
+                                    target="_self">{{$top_view[1]->created_at->toDateString()}}</a></div>
+                            <!-- feature_article_date -->
+
+                            <div class="feature_article_content">
+                                {{str_limit($top_view[1]->description,70) ?? ''}}
+                            </div>
+                            <!-- feature_article_content -->
+
+                            <div class="article_social">
+                                <span><i class="fa fa-eye"></i><a href="javascript:;">{{$top_view[1]->views ?? 0}}</a>Views</span>
+                                <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
+                            </div>
+                            <!-- article_social -->
+
+                        </div>
+
                     </div>
-                    <!-- feature_article_img -->
-
-                    <div class="feature_article_inner">
-                        <div class="tag_lg blue"><a href="category.html">Top Viewed</a></div>
-
-                        <div class="feature_article_title">
-                            <h1><a href="single.html" target="_self">Gadget user good news</a></h1>
-                        </div>
-                        <!-- feature_article_title -->
-
-                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a href="#"
-                                                                                                        target="_self">Aug
-                                4, 2015</a></div>
-                        <!-- feature_article_date -->
-
-                        <div class="feature_article_content">
-                            In a move to address mounting concerns about security on Android...
-                        </div>
-                        <!-- feature_article_content -->
-
-                        <div class="article_social">
-                            <span><i class="fa fa-share-alt"></i><a href="#">424</a>Shares</span>
-                            <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
-                        </div>
-                        <!-- article_social -->
-
-                    </div>
-                    <!-- feature_article_inner -->
+                    <!-- feature_static_wrapper -->
 
                 </div>
-                <!-- feature_static_wrapper -->
-
-            </div>
-            <!-- col-md-5 -->
-
+                <!-- col-md-5 -->
+            @endisset
         </div>
         <!-- Row -->
 

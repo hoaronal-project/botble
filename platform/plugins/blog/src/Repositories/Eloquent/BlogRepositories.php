@@ -10,6 +10,7 @@ namespace Botble\Blog\Repositories\Eloquent;
 
 
 use Botble\Blog\Models\Category;
+use Botble\Blog\Models\Post;
 
 class BlogRepositories
 {
@@ -47,6 +48,16 @@ class BlogRepositories
         else:
             return abort(404);
         endif;
+    }
+
+    /**
+     * get two post has views to top
+     * @return \Illuminate\Support\Collection
+     */
+    public function getPostTopViews()
+    {
+        $posts = Post::orderBy('views','DESC')->orderBy('created_at','DESC')->take(2)->get();
+        return $posts;
     }
 
 }

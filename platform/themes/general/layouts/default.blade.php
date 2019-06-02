@@ -22,7 +22,9 @@
     <!-- preloader -->
     <div class="uc-mobile-menu-pusher">
         <div class="content-wrapper">
-            {!! Theme::partial('header',['listCategories' => (new Botble\Blog\Repositories\Eloquent\BlogRepositories)->getListCategories()]) !!}
+            {!! Theme::partial('header',[
+            'listCategories' => (new Botble\Blog\Repositories\Eloquent\BlogRepositories)->getListCategories(),
+             ]) !!}
 {{--            @includeIf('main::partials.header')--}}
 
             {!! Theme::content() !!}
