@@ -3,6 +3,8 @@
 namespace Botble\Blog\Providers;
 
 use Botble\Blog\Repositories\Eloquent\BlogRepositories;
+use Botble\Video\Repositories\Eloquent\VideoRepository;
+use Botble\Video\Repositories\Eloquent\VRepository;
 use Illuminate\Routing\Events\RouteMatched;
 use Botble\Base\Supports\Helper;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
@@ -152,6 +154,11 @@ class BlogServiceProvider extends ServiceProvider
             $params['populars'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getPopularPost();
             $params['top_views'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getTopViewsPost();
             $params['recent_post'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getRecentPost();
+            return $view->with($params);
+        });
+        \View::composer('main::views.home.video', function ($view) {
+            $params = [];
+           $params['videoList'] = (new \Botble\Video\Repositories\Eloquent\VRepository)->getListVideo();
             return $view->with($params);
         });
     }
