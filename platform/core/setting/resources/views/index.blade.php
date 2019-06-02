@@ -26,7 +26,9 @@
                         <div class="mt5">
                             <input type="hidden" name="show_site_name" value="0">
                             <label><input type="checkbox" class="hrv-checkbox" value="1"
-                                          @if (setting('show_site_name', false)) checked @endif name="show_site_name"> {{ trans('core/setting::setting.general.show_site_name') }} </label>
+                                          @if (setting('show_site_name', false)) checked
+                                          @endif name="show_site_name"> {{ trans('core/setting::setting.general.show_site_name') }}
+                            </label>
                         </div>
                     </div>
 
@@ -44,7 +46,8 @@
                         <div class="ui-select-wrapper">
                             <select name="time_zone" class="ui-select" id="time_zone">
                                 @foreach(DateTimeZone::listIdentifiers(DateTimeZone::ALL) as $time_zone)
-                                    <option value="{{ $time_zone }}" @if (setting('time_zone', 'UTC') === $time_zone) selected @endif>{{ $time_zone }}</option>
+                                    <option value="{{ $time_zone }}"
+                                            @if (setting('time_zone', 'UTC') === $time_zone) selected @endif>{{ $time_zone }}</option>
                                 @endforeach
                             </select>
                             <svg class="svg-next-icon svg-next-icon-size-16">
@@ -57,7 +60,9 @@
                         <div class="mt5">
                             <input type="hidden" name="enable_send_error_reporting_via_email" value="0">
                             <label><input type="checkbox" class="hrv-checkbox" value="1"
-                                          @if (setting('enable_send_error_reporting_via_email')) checked @endif name="enable_send_error_reporting_via_email"> {{ trans('core/setting::setting.general.enable_send_error_reporting_via_email') }} </label>
+                                          @if (setting('enable_send_error_reporting_via_email')) checked
+                                          @endif name="enable_send_error_reporting_via_email"> {{ trans('core/setting::setting.general.enable_send_error_reporting_via_email') }}
+                            </label>
                         </div>
                     </div>
 
@@ -132,6 +137,72 @@
         </div>
         <!--END SLIDE-->
 
+        <!-- LANGUAGE PROGRAM -->
+        <div class="flexbox-annotated-section">
+
+            <div class="flexbox-annotated-section-annotation">
+                <div class="annotated-section-title pd-all-20">
+                    <h2>{{ trans('core/setting::setting.editor.title') }}</h2>
+                </div>
+                <div class="annotated-section-description pd-all-20 p-none-t">
+                    <p class="color-note">{{ trans('core/setting::setting.editor.description') }}</p>
+                </div>
+            </div>
+
+            <div class="flexbox-annotated-section-content">
+                <div class="wrapper-content pd-all-20">
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_one">{{ trans('core/setting::setting.editor.js') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="editor_one" id="editor_one"
+                               value="{{ setting('editor_one') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_des_1">{{ trans('core/setting::setting.editor.editor_des') }}</label>
+                        <textarea data-counter="500" class="next-input" name="editor_des_1"
+                                  id="editor_des_1">{{ setting('editor_des_1') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_two">{{ trans('core/setting::setting.editor.lar') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="editor_two" id="editor_two"
+                               value="{{ setting('editor_two') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_des_2">{{ trans('core/setting::setting.editor.editor_des') }}</label>
+                        <textarea data-counter="500" class="next-input" name="editor_des_2"
+                                  id="editor_des_2">{{ setting('editor_des_2') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_three">{{ trans('core/setting::setting.editor.css') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="editor_three" id="v"
+                               value="{{ setting('editor_three') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_des_3">{{ trans('core/setting::setting.editor.editor_des') }}</label>
+                        <textarea data-counter="500" class="next-input" name="editor_des_3"
+                                  id="editor_des_3">{{ setting('editor_des_3') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_four">{{ trans('core/setting::setting.editor.ruby') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="editor_four" id="editor_four"
+                               value="{{ setting('editor_four') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="editor_des_4">{{ trans('core/setting::setting.editor.editor_des') }}</label>
+                        <textarea data-counter="500" class="next-input" name="editor_des_4"
+                                  id="editor_des_4">{{ setting('editor_des_4') }}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--LANGUAGE PROGRAM-->
 
         <div class="flexbox-annotated-section">
 
@@ -186,7 +257,8 @@
                         <div class="ui-select-wrapper">
                             <select name="default_admin_theme" class="ui-select" id="default_admin_theme">
                                 @foreach(Assets::getThemes() as $theme => $path)
-                                    <option value="{{ $theme }}" @if (setting('default_admin_theme', config('core.base.general.default-theme')) === $theme) selected @endif>{{ Str::studly($theme) }}</option>
+                                    <option value="{{ $theme }}"
+                                            @if (setting('default_admin_theme', config('core.base.general.default-theme')) === $theme) selected @endif>{{ Str::studly($theme) }}</option>
                                 @endforeach
                             </select>
                             <svg class="svg-next-icon svg-next-icon-size-16">
@@ -201,7 +273,9 @@
                         <div class="mt5">
                             <input type="hidden" name="show_admin_bar" value="0">
                             <label><input type="checkbox" class="hrv-checkbox" value="1"
-                                          @if (setting('show_admin_bar')) checked @endif name="show_admin_bar"> {{ trans('core/setting::setting.general.show_admin_bar') }} </label>
+                                          @if (setting('show_admin_bar')) checked
+                                          @endif name="show_admin_bar"> {{ trans('core/setting::setting.general.show_admin_bar') }}
+                            </label>
                         </div>
                     </div>
 
@@ -209,7 +283,9 @@
                         <div class="mt5">
                             <input type="hidden" name="enable_change_admin_theme" value="0">
                             <label><input type="checkbox" class="hrv-checkbox" value="1"
-                                          @if (setting('enable_change_admin_theme')) checked @endif name="enable_change_admin_theme"> {{ trans('core/setting::setting.general.enable_change_admin_theme') }} </label>
+                                          @if (setting('enable_change_admin_theme')) checked
+                                          @endif name="enable_change_admin_theme"> {{ trans('core/setting::setting.general.enable_change_admin_theme') }}
+                            </label>
                         </div>
                     </div>
 
@@ -219,7 +295,9 @@
                             <div class="mt5">
                                 <input type="hidden" name="enable_multi_language_in_admin" value="0">
                                 <label><input type="checkbox" class="hrv-checkbox" value="1"
-                                              @if (setting('enable_multi_language_in_admin')) checked @endif name="enable_multi_language_in_admin"> {{ trans('core/setting::setting.general.enable_multi_language_in_admin') }} </label>
+                                              @if (setting('enable_multi_language_in_admin')) checked
+                                              @endif name="enable_multi_language_in_admin"> {{ trans('core/setting::setting.general.enable_multi_language_in_admin') }}
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -249,7 +327,8 @@
                     <div class="form-group">
                         <label class="text-title-field"
                                for="seo_description">{{ trans('core/setting::setting.general.seo_description') }}</label>
-                        <textarea data-counter="386"  class="next-input" name="seo_description" id="seo_description">{{ setting('seo_description') }}</textarea>
+                        <textarea data-counter="386" class="next-input" name="seo_description"
+                                  id="seo_description">{{ setting('seo_description') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -324,7 +403,9 @@
                         <div class="mt5">
                             <input type="hidden" name="cache_admin_menu_enable" value="0">
                             <label><input type="checkbox" class="hrv-checkbox" value="1"
-                                          @if (setting('cache_admin_menu_enable', true)) checked @endif name="cache_admin_menu_enable"> {{ trans('core/setting::setting.general.cache_admin_menu') }} </label>
+                                          @if (setting('cache_admin_menu_enable', true)) checked
+                                          @endif name="cache_admin_menu_enable"> {{ trans('core/setting::setting.general.cache_admin_menu') }}
+                            </label>
                         </div>
                     </div>
                 </div>

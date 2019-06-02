@@ -108,6 +108,16 @@ return [
         'description' => 'Setting slide home page [Best size: 955x832]',
         'slide_title' => 'Add slide',
     ],
+    'editor'=>[
+        'title' => 'Editor Setting',
+        'description' => 'Setting editor block',
+        'editor_des' => 'Description',
+        'js' => 'Javascript',
+        'lar' => 'Laravel',
+        'css' => 'Css',
+        'ruby' => 'Ruby on Rails',
+
+    ],
     'field_type_not_exists'        => 'This field type does not exist',
     'save_settings'                => 'Save settings',
     'template'                     => 'Template',
