@@ -2,6 +2,7 @@
 
 namespace Botble\Blog\Providers;
 
+use Botble\Blog\Repositories\Eloquent\BlogRepositories;
 use Illuminate\Routing\Events\RouteMatched;
 use Botble\Base\Supports\Helper;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
@@ -75,7 +76,7 @@ class BlogServiceProvider extends ServiceProvider
         if (defined('MEMBER_MODULE_SCREEN_NAME')) {
             $this->loadRoutes(['member']);
         }
-        $this->loadViewsFrom(__DIR__ . '/../../../../themes/general', 'main');
+        $this->loadViewsFrom(__DIR__ . '/../../../../themes/general/', 'main');
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(HookServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
@@ -146,9 +147,11 @@ class BlogServiceProvider extends ServiceProvider
         ], function (View $view) {
             $view->withShortcodes();
         });
-        \View::composer('main::layouts.default', function ($view) {
+        \View::composer('main::views.general.right_sidebar', function ($view) {
             $params = [];
-            $params['listCategories'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getListCategories();
+            $params['populars'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getPopularPost();
+            $params['top_views'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getTopViewsPost();
+            $params['recent_post'] = (new \Botble\Blog\Repositories\Eloquent\BlogRepositories)->getRecentPost();
             return $view->with($params);
         });
     }

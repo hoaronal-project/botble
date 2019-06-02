@@ -1,90 +1,30 @@
+@isset($populars)
 <div class="widget">
     <div class="widget_title widget_black">
         <h2><a href="#">Popular News</a></h2>
     </div>
+    @foreach($populars as $post)
     <div class="media">
         <div class="media-left">
-            <a href="#"><img class="media-object" src="assets/img/pop_right1.jpg"
+            <a href="javascript:;"><img class="media-object sidebar-img" src="{{asset($post->image_link ?? '')}}"
                              alt="Generic placeholder image"></a>
         </div>
         <div class="media-body">
             <h3 class="media-heading">
-                <a href="single.html" target="_self">Canon launches photo centric 00214 Model supper shutter
-                    camera</a>
-            </h3> <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
+                <a href="javascript:;" target="_self">{{str_limit($post->name,30) ?? ''}}</a>
+            </h3> <span class="media-date"><a href="javascript:;">{{$post->created_at->toDateString()}}</a>,  by: <a href="javascript:;">{{$post->author->first_name}}</a></span>
 
             <div class="widget_article_social">
                 <span>
-                    <a href="single.html" target="_self"> <i class="fa fa-share-alt"></i>424</a> Shares
+                    <a href="javascript:;" target="_self"> <i class="fa fa-eye"></i>{{$post->views ?? 0}}</a> Views
                 </span>
                 <span>
-                    <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
+                    <a href="javascript:;" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
                 </span>
             </div>
         </div>
     </div>
-    <div class="media">
-        <div class="media-left">
-            <a href="#"><img class="media-object" src="assets/img/pop_right2.jpg"
-                             alt="Generic placeholder image"></a>
-        </div>
-        <div class="media-body">
-            <h3 class="media-heading">
-                <a href="single.html" target="_self">Samsung galaxy note are the supper mobile of all products.</a>
-            </h3>
-            <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-
-            <div class="widget_article_social">
-                <span>
-                    <a href="single.html" target="_self"> <i class="fa fa-share-alt"></i>424</a> Shares
-                </span>
-                <span>
-                    <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="media">
-        <div class="media-left">
-            <a href="#"><img class="media-object" src="assets/img/pop_right3.jpg"
-                             alt="Generic placeholder image"></a>
-        </div>
-        <div class="media-body">
-            <h3 class="media-heading">
-                <a href="single.html" target="_self">Apple launches photo-centric wrist watch for Android</a>
-            </h3>
-            <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-
-            <div class="widget_article_social">
-                <span>
-                    <a href="single.html" target="_self"> <i class="fa fa-share-alt"></i>424</a> Shares
-                </span>
-                <span>
-                    <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="media">
-        <div class="media-left">
-            <a href="#"><img class="media-object" src="assets/img/pop_right4.jpg"
-                             alt="Generic placeholder image"></a>
-        </div>
-        <div class="media-body">
-            <h3 class="media-heading">
-                <a href="single.html" target="_self">Kodak Hi-Speed shutter double shot camera comming soon</a>
-            </h3>
-            <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-
-            <div class="widget_article_social">
-                <span>
-                    <a href="single.html" target="_self"><i class="fa fa-share-alt"></i>424</a> Shares
-                </span>
-                <span>
-                    <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
-                </span>
-            </div>
-        </div>
-    </div>
+    @endforeach
     <p class="widget_divider"><a href="#" target="_self">More News&nbsp;&raquo;</a></p>
 </div>
+@endisset

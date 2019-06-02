@@ -60,4 +60,33 @@ class BlogRepositories
         return $posts;
     }
 
+    /**
+     * Get the featured post
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public function getPopularPost()
+    {
+        $posts = Post::where('is_featured',1)->take(5)->get();
+        return $posts;
+    }
+
+    /**
+     * Get the post order by views
+     * @return \Illuminate\Support\Collection
+     */
+    public function getTopViewsPost()
+    {
+        $posts = Post::orderBy('views','DESC')->take(5)->get();
+        return $posts;
+    }
+
+    /**
+     * get post order by time create
+     * @return \Illuminate\Support\Collection
+     */
+    public function getRecentPost()
+    {
+        $posts = Post::orderBy('created_at','DESC')->take(5)->get();
+        return $posts;
+    }
 }
