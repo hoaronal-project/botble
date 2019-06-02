@@ -1,0 +1,9 @@
+{
+    "name": "Video",
+    "namespace": "Botble\\Video\\",
+    "provider": "Botble\\Video\\Providers\\VideoServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin video"
+}
