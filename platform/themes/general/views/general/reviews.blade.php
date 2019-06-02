@@ -1,6 +1,6 @@
 <div class="widget reviews m30">
     <div class="widget_title widget_black">
-        <h2><a href="#">Reviews</a></h2>
+        <h2><a href="#">High Views</a></h2>
     </div>
     <div class="media">
         <div class="media-left">

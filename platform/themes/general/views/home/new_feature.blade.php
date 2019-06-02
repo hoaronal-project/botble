@@ -3,10 +3,39 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="feature_article_wrapper">
-                    <div class="feature_article_img">
-                        <img class="img-responsive top_static_article_img" src="assets/img/feature-top.jpg"
-                             alt="feature-top">
+                    <div class="swiper-container swiper-home">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <div class="feature_article_img">
+                                    <img class="img-responsive top_static_article_img" src="{!! asset(setting('slide_one')) ?? '' !!}"
+                                         alt="feature-top">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="feature_article_img">
+                                    <img class="img-responsive top_static_article_img" src="{!! asset(setting('slide_two')) ?? '' !!}"
+                                         alt="feature-top">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="feature_article_img">
+                                    <img class="img-responsive top_static_article_img" src="{!! asset(setting('slide_three')) ?? '' !!}"
+                                         alt="feature-top">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="feature_article_img">
+                                    <img class="img-responsive top_static_article_img" src="{!! asset(setting('slide_four')) ?? '' !!}"
+                                         alt="feature-top">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- If we need pagination -->
+                        <div class="swiper-pagination"></div>
                     </div>
+
                     <!-- feature_article_img -->
 
 

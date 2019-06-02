@@ -3,6 +3,7 @@
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/fonts/font-awesome/font-awesome.min.css')}}" rel="stylesheet">
 <!-- Mobile Menu Style -->
+<link href="{{asset('assets/css/swiper.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/mobile-menu.css')}}" rel="stylesheet">
 <!-- Owl carousel -->
 <link href="{{asset('assets/css/owl.carousel.css')}}" rel="stylesheet">

@@ -63,8 +63,75 @@
 
                 </div>
             </div>
-
         </div>
+        <!-- SOCIAL -->
+        <div class="flexbox-annotated-section">
+
+            <div class="flexbox-annotated-section-annotation">
+                <div class="annotated-section-title pd-all-20">
+                    <h2>{{ trans('core/setting::setting.social.title') }}</h2>
+                </div>
+                <div class="annotated-section-description pd-all-20 p-none-t">
+                    <p class="color-note">{{ trans('core/setting::setting.social.description') }}</p>
+                </div>
+            </div>
+
+            <div class="flexbox-annotated-section-content">
+                <div class="wrapper-content pd-all-20">
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="site_title">{{ trans('core/setting::setting.social.fb') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="fb" id="fb"
+                               value="{{ setting('fb') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END SOCIAL-->
+
+        <!-- SLIDE -->
+        <div class="flexbox-annotated-section">
+
+            <div class="flexbox-annotated-section-annotation">
+                <div class="annotated-section-title pd-all-20">
+                    <h2>{{ trans('core/setting::setting.slide.title') }}</h2>
+                </div>
+                <div class="annotated-section-description pd-all-20 p-none-t">
+                    <p class="color-note">{{ trans('core/setting::setting.slide.description') }}</p>
+                </div>
+            </div>
+
+            <div class="flexbox-annotated-section-content">
+                <div class="wrapper-content pd-all-20">
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="site_title">{{ trans('core/setting::setting.slide.slide_title') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="slide_one" id="slide_one"
+                               value="{{ setting('slide_one') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="site_title">{{ trans('core/setting::setting.slide.slide_title') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="slide_two" id="slide_two"
+                               value="{{ setting('slide_two') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="site_title">{{ trans('core/setting::setting.slide.slide_title') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="slide_three" id="slide_three"
+                               value="{{ setting('slide_three') }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-title-field"
+                               for="site_title">{{ trans('core/setting::setting.slide.slide_title') }}</label>
+                        <input data-counter="190" type="text" class="next-input" name="slide_four" id="slide_four"
+                               value="{{ setting('slide_four') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END SLIDE-->
+
 
         <div class="flexbox-annotated-section">
 
