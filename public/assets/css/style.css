@@ -1281,7 +1281,7 @@ section {
 }
 
 .embed-responsive-4by3 {
-    padding-bottom: 35%;
+    padding-bottom: 56%;
 }
 
 /* ---------------------------------------------- /*
@@ -1767,4 +1767,7 @@ section {
     width: 100px;
     height: 100px;
     object-fit: cover;
+}
+.video-section{
+    margin-top: 30px;
 }

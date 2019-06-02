@@ -15,12 +15,28 @@ var Sw_Slide = {
                 },
             });
         }
+    },
+    videoSlide:function () {
+        if (jQuery('.video-section').length){
+            var swiper = new Swiper('.swiper-container.swiper-video', {
+                navigation: {
+                    nextEl: '.swiper-video .swiper-button-next',
+                    prevEl: '.swiper-video .swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-video .swiper-pagination',
+                    dynamicBullets: true,
+                    clickable: true,
+                },
+            });
+        }
     }
 };
 
 jQuery(document).ready(function () {
     // Swiper
     Sw_Slide.slideHome();
+    Sw_Slide.videoSlide();
 });
 window.onload = function () {
 

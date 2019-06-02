@@ -358,6 +358,7 @@
                     </div>
             @endisset
             <!--ror-->
+                @includeIf('main::views.home.video')
             </div>
             <!-- Left Section -->
         @includeIf('main::views.general.right_sidebar')
