@@ -7,13 +7,6 @@
                             frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="swiper-slide">
-                <div class="embed-responsive embed-responsive-4by3">
-                    <iframe src="https://www.youtube.com/embed/5iMx3tlpFeY" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-            </div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
