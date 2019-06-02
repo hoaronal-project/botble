@@ -15,7 +15,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="top_article_img">
-                                            <a href="javascript:;" target="_self"><img class="img-responsive"
+                                            <a href="{{route('public.blog.details')}}/{{$feature_news['top_views']->slug ?? ''}}" target="_self"><img class="img-responsive"
                                                                                        src="{{asset($feature_news['top_views']->image_link ?? '')}}"
                                                                                        alt="feature-top">
                                             </a>
@@ -27,7 +27,7 @@
                                             class="tag purple">{{$feature_news['top_views']->categories[0]->name ?? 'Updating'}}</span>
 
                                         <div class="category_article_title">
-                                            <h2><a href="javascript:;"
+                                            <h2><a href="{{route('public.blog.details')}}/{{$feature_news['top_views']->slug ?? ''}}"
                                                    target="_self">{{str_limit($feature_news['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
@@ -59,7 +59,7 @@
                                         <div class="col-md-6">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#"><img class="media-object post-image"
+                                                    <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"><img class="media-object post-image"
                                                                      src="{{asset($post->image_link) ?? ''}}"
                                                                      alt="Generic placeholder image"></a>
                                                 </div>
@@ -67,7 +67,7 @@
                                                     <span
                                                         class="tag purple">{{$post->categories[0]->name ?? 'Updating'}}</span>
 
-                                                    <h3 class="media-heading"><a href="javascript:;"
+                                                    <h3 class="media-heading"><a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"
                                                                                  target="_self">{{(str_limit($post->name,20)) ?? 'Updating'}}</a>
                                                     </h3>
                                                     <span class="media-date"><a
@@ -104,7 +104,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="top_article_img">
-                                            <a href="javascript:;" target="_self"><img class="img-responsive"
+                                            <a href="{{route('public.blog.details')}}/{{$feature_news_js['top_views']->slug ?? ''}}" target="_self"><img class="img-responsive"
                                                                                        src="{{asset($feature_news_js['top_views']->image_link ?? '')}}"
                                                                                        alt="feature-top">
                                             </a>
@@ -116,7 +116,7 @@
                                             class="tag purple">{{$feature_news_js['top_views']->categories[0]->name ?? 'Updating'}}</span>
 
                                         <div class="category_article_title">
-                                            <h2><a href="javascript:;"
+                                            <h2><a href="{{route('public.blog.details')}}/{{$feature_news_js['top_views']->slug ?? ''}}"
                                                    target="_self">{{str_limit($feature_news_js['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
@@ -148,7 +148,7 @@
                                         <div class="col-md-6">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#"><img class="media-object post-image"
+                                                    <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"><img class="media-object post-image"
                                                                      src="{{asset($post->image_link) ?? ''}}"
                                                                      alt="Generic placeholder image"></a>
                                                 </div>
@@ -156,7 +156,7 @@
                                                     <span
                                                         class="tag purple">{{$post->categories[0]->name ?? 'Updating'}}</span>
 
-                                                    <h3 class="media-heading"><a href="javascript:;"
+                                                    <h3 class="media-heading"><a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"
                                                                                  target="_self">{{(str_limit($post->name,20)) ?? 'Updating'}}</a>
                                                     </h3>
                                                     <span class="media-date"><a
@@ -193,7 +193,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="top_article_img">
-                                            <a href="javascript:;" target="_self"><img class="img-responsive"
+                                            <a href="{{route('public.blog.details')}}/{{$feature_news_css['top_views']->slug ?? ''}}" target="_self"><img class="img-responsive"
                                                                                        src="{{asset($feature_news_css['top_views']->image_link ?? '')}}"
                                                                                        alt="feature-top">
                                             </a>
@@ -205,7 +205,7 @@
                                             class="tag purple">{{$feature_news_css['top_views']->categories[0]->name ?? 'Updating'}}</span>
 
                                         <div class="category_article_title">
-                                            <h2><a href="javascript:;"
+                                            <h2><a href="{{route('public.blog.details')}}/{{$feature_news_css['top_views']->slug ?? ''}}"
                                                    target="_self">{{str_limit($feature_news_css['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
@@ -237,7 +237,7 @@
                                         <div class="col-md-6">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#"><img class="media-object post-image"
+                                                    <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"><img class="media-object post-image"
                                                                      src="{{asset($post->image_link) ?? ''}}"
                                                                      alt="Generic placeholder image"></a>
                                                 </div>
@@ -245,7 +245,7 @@
                                                     <span
                                                         class="tag purple">{{$post->categories[0]->name ?? 'Updating'}}</span>
 
-                                                    <h3 class="media-heading"><a href="javascript:;"
+                                                    <h3 class="media-heading"><a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"
                                                                                  target="_self">{{(str_limit($post->name,20)) ?? 'Updating'}}</a>
                                                     </h3>
                                                     <span class="media-date"><a
@@ -282,7 +282,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="top_article_img">
-                                            <a href="javascript:;" target="_self"><img class="img-responsive"
+                                            <a href="{{route('public.blog.details')}}/{{$feature_news_ruby['top_views']->slug ?? ''}}" target="_self"><img class="img-responsive"
                                                                                        src="{{asset($feature_news_ruby['top_views']->image_link ?? '')}}"
                                                                                        alt="feature-top">
                                             </a>
@@ -294,7 +294,7 @@
                                             class="tag purple">{{$feature_news_ruby['top_views']->categories[0]->name ?? 'Updating'}}</span>
 
                                         <div class="category_article_title">
-                                            <h2><a href="javascript:;"
+                                            <h2><a href="{{route('public.blog.details')}}/{{$feature_news_ruby['top_views']->slug ?? ''}}"
                                                    target="_self">{{str_limit($feature_news_ruby['top_views']->name,30) ?? 'Updating'}}</a>
                                             </h2>
                                         </div>
@@ -326,7 +326,7 @@
                                         <div class="col-md-6">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#"><img class="media-object post-image"
+                                                    <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"><img class="media-object post-image"
                                                                      src="{{asset($post->image_link) ?? ''}}"
                                                                      alt="Generic placeholder image"></a>
                                                 </div>
@@ -334,7 +334,7 @@
                                                     <span
                                                         class="tag purple">{{$post->categories[0]->name ?? 'Updating'}}</span>
 
-                                                    <h3 class="media-heading"><a href="javascript:;"
+                                                    <h3 class="media-heading"><a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"
                                                                                  target="_self">{{(str_limit($post->name,20)) ?? 'Updating'}}</a>
                                                     </h3>
                                                     <span class="media-date"><a

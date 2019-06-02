@@ -1,4 +1,5 @@
 <?php
+
 namespace Botble\Blog\Http\Controllers;
 
 use Botble\ACL\Repositories\Interfaces\UserInterface;
@@ -122,34 +123,51 @@ class PublicController extends Controller
 
     /**
      * Get view of blog page
+     * @param BlogRepositories $blogRepositories
      * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function getBlog()
+    public function getBlog(BlogRepositories $blogRepositories)
     {
         $params = [];
-        return Theme::scope('blog_index', compact('params'), 'plugins/blog::blog.blog_index')->render();
+        $params ['posts'] = $blogRepositories->getAllPost();
+        return Theme::scope('blog_index', $params, 'plugins/blog::blog.blog_index')->render();
     }
 
     /**
      * Get view of Categories page
+     * @param $tags
+     * @param BlogRepositories $blogRepositories
      * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function getCategories($tags)
+    public function getCategories($tags, BlogRepositories $blogRepositories)
     {
-        $params = [];
-        return Theme::scope('category_index', compact('params'), 'plugins/blog::categories.category_index')->render();
+        if ($tags) {
+            $params = [];
+            $params['posts'] = $blogRepositories->getPostByCategory($tags);
+            $params['category_name'] = $blogRepositories->getCategoryName($tags);
+            return Theme::scope('category_index', $params, 'plugins/blog::categories.category_index')->render();
+        } else {
+            return abort(404);
+        }
     }
 
     /**
      * Get blog details page
+     * @param $slug
+     * @param BlogRepositories $blogRepositories
      * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function getBlogDetails()
+    public function getBlogDetails($slug, BlogRepositories $blogRepositories)
     {
-        $params =[];
-        return Theme::scope('index_details',compact('params'),'plugins/blog::details.index_details')->render();
+        if ($slug) {
+            $params = [];
+            $params['detail'] = $blogRepositories->getPostDetails($slug);
+            return Theme::scope('index_details', $params, 'plugins/blog::details.index_details')->render();
+        } else {
+            return abort(404);
+        }
     }
 }

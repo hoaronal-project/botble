@@ -6,12 +6,12 @@
         @foreach($top_views as $post)
             <div class="media">
                 <div class="media-left">
-                    <a href="javascript:;"><img class="media-object sidebar-img" src="{{asset($post->image_link ?? '')}}"
+                    <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}"><img class="media-object sidebar-img" src="{{asset($post->image_link ?? '')}}"
                                                 alt="Generic placeholder image"></a>
                 </div>
                 <div class="media-body">
                     <h3 class="media-heading">
-                        <a href="javascript:;" target="_self">{{str_limit($post->name,30) ?? ''}}</a>
+                        <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}" target="_self">{{str_limit($post->name,30) ?? ''}}</a>
                     </h3> <span class="media-date"><a href="javascript:;">{{$post->created_at->toDateString()}}</a>,  by: <a href="javascript:;">{{$post->author->first_name}}</a></span>
 
                     <div class="widget_article_social">

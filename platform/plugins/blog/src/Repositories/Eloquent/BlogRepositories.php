@@ -11,6 +11,7 @@ namespace Botble\Blog\Repositories\Eloquent;
 
 use Botble\Blog\Models\Category;
 use Botble\Blog\Models\Post;
+use Botble\Slug\Models\Slug;
 
 class BlogRepositories
 {
@@ -33,18 +34,18 @@ class BlogRepositories
     {
         $data = [];
         if ($id):
-        $category = Category::with('posts')->where('id', $id)->first();
-        $postsOfLaravel = collect($category->posts);
-        $postsOfLaravel = collect($postsOfLaravel)->map(function ($item) {
-            return (object)$item;
-        });
-        $featured_post = $postsOfLaravel->where('is_featured', 1)->sortBy('created_at')->reverse();
-        $topViews = $postsOfLaravel->sortBy('views')->last();
-        $data = [
-            'top_views' => $topViews,
-            'featured_post' => $featured_post,
-        ];
-        return $data;
+            $category = Category::with('posts')->where('id', $id)->first();
+            $postsOfLaravel = collect($category->posts);
+            $postsOfLaravel = collect($postsOfLaravel)->map(function ($item) {
+                return (object)$item;
+            });
+            $featured_post = $postsOfLaravel->where('is_featured', 1)->sortBy('created_at')->reverse();
+            $topViews = $postsOfLaravel->sortBy('views')->last();
+            $data = [
+                'top_views' => $topViews,
+                'featured_post' => $featured_post,
+            ];
+            return $data;
         else:
             return abort(404);
         endif;
@@ -56,7 +57,10 @@ class BlogRepositories
      */
     public function getPostTopViews()
     {
-        $posts = Post::orderBy('views','DESC')->orderBy('created_at','DESC')->take(2)->get();
+        $posts = Post::with('tags', 'categories', 'author')
+            ->orderBy('views', 'DESC')
+            ->orderBy('created_at', 'DESC')
+            ->take(2)->get();
         return $posts;
     }
 
@@ -66,7 +70,9 @@ class BlogRepositories
      */
     public function getPopularPost()
     {
-        $posts = Post::where('is_featured',1)->take(5)->get();
+        $posts = Post::with('tags', 'categories', 'author')
+            ->where('is_featured', 1)
+            ->take(5)->get();
         return $posts;
     }
 
@@ -76,7 +82,9 @@ class BlogRepositories
      */
     public function getTopViewsPost()
     {
-        $posts = Post::orderBy('views','DESC')->take(5)->get();
+        $posts = Post::with('tags', 'categories', 'author')
+            ->orderBy('views', 'DESC')
+            ->take(5)->get();
         return $posts;
     }
 
@@ -86,7 +94,71 @@ class BlogRepositories
      */
     public function getRecentPost()
     {
-        $posts = Post::orderBy('created_at','DESC')->take(5)->get();
+        $posts = Post::with('tags', 'categories', 'author')
+            ->orderBy('created_at', 'DESC')
+            ->take(5)->get();
         return $posts;
+    }
+
+    /**
+     * Get all post and paginate with 15 record
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getAllPost()
+    {
+        $posts = Post::with('tags', 'categories', 'author')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(15);
+        return $posts;
+    }
+
+    /**
+     * Get list post by category
+     * @param $category
+     * @return mixed|$posts|abort
+     */
+    public function getPostByCategory($category)
+    {
+        if ($category):
+            $category_id = Slug::where('reference', 'category')->where('key', $category)->first()->reference_id;
+            $categories = Category::with('posts')->where('id', $category_id)->first();
+            $posts = ($categories->posts)->take(16);
+            return $posts;
+        else:
+            return abort(404);
+        endif;
+    }
+
+    /**
+     * Get name of category by slug
+     * @param $slug
+     * @return mixed|$name|void
+     */
+    public function getCategoryName($slug)
+    {
+        if ($slug):
+            $category_id = Slug::where('reference', 'category')->where('key', $slug)->first()->reference_id;
+            $name = Category::with('posts')->where('id', $category_id)->first()->name;
+            return $name;
+        else:
+            return abort(404);
+        endif;
+    }
+
+    /**
+     * get details of post by slug
+     * @param $slug
+     * @return Post|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object|$post|void
+     */
+    public function getPostDetails($slug)
+    {
+        if ($slug) {
+            $post_id = Slug::where('reference', 'post')->where('key', $slug)->first()->reference_id;
+            $post = Post::with('author', 'tags', 'categories')->where('id', $post_id)->first();
+            return $post;
+        } else {
+            return abort(404);
+        }
+
     }
 }
