@@ -29,8 +29,9 @@
         "bootstrap-vue": "^2.0.0-rc.11",
         "cropper": "^0.7.9",
         "moment": "^2.22.2",
-        "vue-template-compiler": "^2.5.17",
         "sanitize-html": "^1.20.0",
-        "toastr": "^2.1.4"
+        "swiper": "^4.5.0",
+        "toastr": "^2.1.4",
+        "vue-template-compiler": "^2.5.17"
     }
 }
