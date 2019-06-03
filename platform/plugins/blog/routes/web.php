@@ -157,12 +157,12 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                 'as' => 'public.categories',
                 'uses' => 'PublicController@getCategories'
             ]);
-//            Route::group(['prefix'=>'post'], function (){
+            Route::group(['prefix'=>'post'], function (){
                 Route::get('{slug?}', [
                     'as' => 'public.blog.details',
                     'uses' => 'PublicController@getBlogDetails'
                 ]);
-//            });
+            });
         });
     }
 });
