@@ -1060,12 +1060,12 @@ section {
 .entity_content blockquote {
     display: block;
     padding: 15px 20px 15px 45px;
-    margin: 0px 20px 15px 0px;
+    margin: 0 20px 15px 0;
     position: relative;
-    font-size: 25px;
+    font-size: 15px;
     line-height: 32px;
     color: #666;
-    width: 34%;
+    width: 100%;
     border: none ;
     -moz-box-shadow: 2px 2px 15px #ccc;
     -webkit-box-shadow: 2px 2px 15px #ccc;

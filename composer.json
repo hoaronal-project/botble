@@ -6,16 +6,17 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+        "ext-curl": "*",
         "ext-exif": "*",
         "ext-gd": "*",
         "ext-json": "*",
         "ext-zip": "*",
         "botble/api": "*@dev",
         "botble/menu": "*@dev",
-        "botble/revision": "*@dev",
         "botble/optimize": "*@dev",
         "botble/page": "*@dev",
         "botble/platform": "*@dev",
+        "botble/revision": "*@dev",
         "botble/seo-helper": "*@dev",
         "botble/shortcode": "*@dev",
         "botble/slug": "*@dev",
@@ -23,7 +24,7 @@
         "botble/widget": "*@dev",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "ext-curl": "*"
+        "rap2hpoutre/laravel-log-viewer": "^1.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

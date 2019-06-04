@@ -163,6 +163,7 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                     'uses' => 'PublicController@getBlogDetails'
                 ]);
             });
+            Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
         });
     }
 });
