@@ -96,6 +96,7 @@
                         <ul class="nav navbar-nav main-nav">
                             <li class="active"><a href="{{route('public.index') ?? 'javascript:;'}}">Home</a></li>
                             <li><a href="{{route('public.blog') ?? 'javascript:;'}}">Post</a></li>
+                            <li><a href="{{route('public.news') ?? 'javascript:;'}}">News</a></li>
 
                             <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Categories
                                     <span><i class="fa fa-angle-down"></i></span></a>

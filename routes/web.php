@@ -14,4 +14,7 @@ Route::group(['prefix'=>'test'], function (){
    Route::get('test',[
        'uses' => 'TestController@test'
    ]);
+    Route::get('news',[
+        'uses' => 'TestController@crawlNews'
+    ]);
 });

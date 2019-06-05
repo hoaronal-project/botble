@@ -3,18 +3,19 @@
 namespace Botble\News\Http\Controllers;
 
 use Botble\Base\Events\BeforeEditContentEvent;
-use Botble\News\Http\Requests\NewsRequest;
-use Botble\News\Repositories\Interfaces\NewsInterface;
-use Botble\Base\Http\Controllers\BaseController;
-use Illuminate\Http\Request;
-use Exception;
-use Botble\News\Tables\NewsTable;
 use Botble\Base\Events\CreatedContentEvent;
 use Botble\Base\Events\DeletedContentEvent;
 use Botble\Base\Events\UpdatedContentEvent;
+use Botble\Base\Forms\FormBuilder;
+use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\News\Forms\NewsForm;
-use Botble\Base\Forms\FormBuilder;
+use Botble\News\Http\Requests\NewsRequest;
+use Botble\News\Repositories\Interfaces\NewsInterface;
+use Botble\News\Tables\NewsTable;
+use Theme;
+use Exception;
+use Illuminate\Http\Request;
 
 class NewsController extends BaseController
 {
@@ -158,5 +159,22 @@ class NewsController extends BaseController
         }
 
         return $response->setMessage(trans('core/base::notices.delete_success_message'));
+    }
+
+    /**
+     * Get news page
+     * @return \Botble\Theme\Facades\Response|\Illuminate\Http\Response|\Response
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function getNews()
+    {
+        $params = [];
+        $params['news'] =  $this->newsRepository->all(['categories'])->take(20);
+        if (!empty($params)) {
+
+            return Theme::scope('news_index', $params, 'plugins/news::news_index')->render();
+        } else {
+            return abort(404);
+        }
     }
 }

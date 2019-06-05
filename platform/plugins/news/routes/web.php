@@ -42,5 +42,10 @@ Route::group(['namespace' => 'Botble\News\Http\Controllers', 'middleware' => 'we
             ]);
         });
     });
-    
+    Route::group(['prefix'=> 'news', 'middleware' => 'web'], function (){
+        Route::get('list',[
+           'as' => 'public.news' ,
+            'uses' => 'NewsController@getNews'
+        ]);
+    });
 });

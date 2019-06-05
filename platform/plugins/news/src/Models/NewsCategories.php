@@ -1,17 +1,22 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: vanth
+ * Date: 6/5/2019
+ * Time: 4:07 PM
+ */
 
 namespace Botble\News\Models;
 
-use Botble\Base\Traits\EnumCastable;
-use Botble\Base\Enums\BaseStatusEnum;
-use Eloquent;
 
+use Botble\Base\Enums\BaseStatusEnum;
+use Botble\Base\Traits\EnumCastable;
+use Eloquent;
 /**
- * Botble\News\Models\News
- *
- * @mixin \Eloquent
+ * @method belongsToMany(string $class, string $string)
+ * @method hasMany(string $class, string $string)
  */
-class News extends Eloquent
+class NewsCategories extends Eloquent
 {
     use EnumCastable;
 
@@ -20,7 +25,7 @@ class News extends Eloquent
      *
      * @var string
      */
-    protected $table = 'news';
+    protected $table = 'news_categories';
 
     /**
      * @var array
@@ -31,15 +36,7 @@ class News extends Eloquent
         'description',
         'created_at',
         'updated_at',
-        'content',
-        'author_id',
-        'category_id',
-        'views',
-        'image',
-        'is_featured',
-        'ordering',
-        'source',
-        'is_crawled',
+        'slug',
     ];
 
     /**
@@ -53,8 +50,9 @@ class News extends Eloquent
     protected $casts = [
         'status' => BaseStatusEnum::class,
     ];
-    public function categories()
+
+    public function news()
     {
-        return $this->belongsTo(NewsCategories::class, 'category_id');
+        return $this->hasMany(News::class,'category_id');
     }
 }

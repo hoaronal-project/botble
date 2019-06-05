@@ -23,7 +23,7 @@ class NewsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind(NewsInterface::class, function () {
+        $this->app->singleton(NewsInterface::class, function () {
             return new NewsCacheDecorator(new NewsRepository(new News));
         });
 
