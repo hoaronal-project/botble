@@ -1,0 +1,9 @@
+{
+    "name": "News",
+    "namespace": "Botble\\News\\",
+    "provider": "Botble\\News\\Providers\\NewsServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin news"
+}
