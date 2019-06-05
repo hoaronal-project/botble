@@ -23,33 +23,39 @@ class TestController
         $client = new Client();
         $converter = new CssSelectorConverter();
         try {
-//            for ($i = 12 ; $i <= 20 ; $i++){
-            $crawler = $client->request('GET', 'https://viblo.asia/tags/javascript?page=5');
-            dd(get_class_methods($crawler));
-            $crawler->filterXPath($converter->toXPath('h3 a') ?? $converter->toXPath('h3'))->each(function ($node) use (
-                $client,
-                $converter
-            ) {
-                $title = $node->text() ?? null;
-                $link = $node->selectLink($node->text())->link() ?? '';
-                $crawler = $client->click($link);
-                $url = $crawler->getUri();
-                $content = $crawler->filterXPath($converter->toXPath('.article-content__body'))->html() ?? null;
-                $des = $crawler->filterXPath($converter->toXPath('.article-content__body p'))->text() ?? null;
-                PostCrawl::create([
-                    'name' => $title,
-                    'description' => $des,
-                    'content' => $content,
-                    'image_link' => 'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/04/CGWd8yk-796x398.jpg',
-                    'author_id' => 1,
-                    'format_type' => $url ?? '',
-                    'category' => 'js',
-                ]);
-            });
-//            }
+            for ($i = 1; $i <= 10; $i++) {
+                $crawler = $client->request('GET', 'https://viblo.asia/tags/laravel?page=' . $i . '');
+                $crawler->filterXPath($converter->toXPath('h3 a') ?? $converter->toXPath('h3'))->each(function ($node
+                ) use (
+                    $client,
+                    $converter
+                ) {
+                    try {
+                        if ($node) {
+                            $title = $node->text() ?? null;
+                            $link = $node->selectLink($node->text())->link() ?? '';
+                            $crawler = $client->click($link);
+                            $url = $crawler->getUri();
+                            $content = $crawler->filterXPath($converter->toXPath('.article-content__body'))->html() ?? null;
+                            $des = $crawler->filterXPath($converter->toXPath('.article-content__body p'))->text() ?? null;
+                            PostCrawl::create([
+                                'name' => $title,
+                                'description' => $des,
+                                'content' => $content,
+                                'image_link' => 'https://viblo.asia/uploads/bd4a537c-99ce-460f-b1c6-d3627cef79fe.png',
+                                'author_id' => 1,
+                                'format_type' => $url ?? '',
+                                'category' => 'js',
+                            ]);
+                        }
+                    } catch (\Exception $exception) {
+                        return true;
+                    }
+                });
+            }
             echo 'success';
-        } catch (\Throwable $throwable) {
-            dd($throwable->getMessage());
+        } catch (\Exception $e) {
+            return true;
         }
     }
 
@@ -82,7 +88,7 @@ class TestController
                             'category_id' => 1,
                             'slug' => Str::slug($title)
                         ]);
-                    }else{
+                    } else {
                         return true;
                     }
                 } catch (\Exception $e) {
@@ -92,4 +98,55 @@ class TestController
                 }
             });
     }
+
+    public function getTestViews()
+    {
+        $data = [];
+        $data['list'] = PostCrawl::all();
+        return view('test', $data);
+    }
+
+    public function getDetails($id = null)
+    {
+        $data = [];
+        $data['post'] = PostCrawl::where('id', $id)->first();
+        return view('detail', $data);
+    }
+
+
+    /**
+     * @param bool $case_insensitive
+     * @return bool
+     */
+    public function find_replace($case_insensitive = true)
+    {
+        $find = 'language-none';
+        $replace = 'prettyprint';
+        $file = public_path('a.txt');
+        if (!file_exists($file)) {
+            return false;
+        } else {
+            $contents = file_get_contents($file);
+            if ($case_insensitive) {
+                $output = str_ireplace($find, $replace, $contents);
+            } else {
+                $output = str_replace($find, $replace, $contents);
+            }
+            $fopen = fopen($file, 'w');
+            if (!$fopen) {
+                return false;
+            } else {
+                $fwrite = fwrite($fopen, $output);
+                if (!$fwrite) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            fclose($open);
+        echo 'success';
+        }
+    }
+
+
 }

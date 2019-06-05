@@ -165,6 +165,7 @@ class PublicController extends Controller
         if ($slug) {
             $params = [];
             $params['detail'] = $blogRepositories->getPostDetails($slug);
+            event('public.blog.details', $params['detail']);
             return Theme::scope('index_details', $params, 'plugins/blog::details.index_details')->render();
         } else {
             return abort(404);

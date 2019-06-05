@@ -10,3 +10,5 @@
 <!-- Theme Script -->
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="{{asset('assets/js/common.js')}}"></script>
+<script src="{{asset('assets/js/run_prettify.js')}}"></script>
+

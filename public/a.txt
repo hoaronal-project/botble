@@ -1,0 +1,191 @@
+<div class="md-contents article-content__body my-2 flex-fill">
+<p>Ng&agrave;y xưa l&agrave;m project training về website order thức ăn m&igrave;nh l&agrave;m chức năng đếm số lượt xem sản phẩm như sau: Th&ecirc;m một column l&agrave; count_views v&agrave;o bảng products rồi xữ l&yacute; (trong controller) tăng count_views l&ecirc;n 1 v&agrave; update v&agrave;o database mỗi lần người d&ugrave;ng click v&agrave;o trang chi tiết sản phẩm. Đ&uacute;ng l&agrave; khi xưa ta b&eacute; ta ngu, c&aacute;ch l&agrave;m n&agrave;y rất kh&ocirc;ng đ&uacute;ng v&agrave; risk của n&oacute; th&igrave; chắc c&aacute;c bạn đ&atilde; biết rồi, m&igrave;nh kh&ocirc;ng n&oacute;i th&ecirc;m nữa. H&ocirc;m nay m&igrave;nh viết b&agrave;i n&agrave;y để chia sẽ c&aacute;c bạn c&aacute;ch l&agrave;m chức năng đếm số lượt xem trang một c&aacute;ch đ&uacute;ng đắn hơn, sử dụng Events v&agrave; Middleware trong Laravel. Nếu bạn n&agrave;o muốn d&ugrave;ng package để l&agrave;m chức năng n&agrave;y th&igrave; c&oacute; thể sử dụng package <a href="https://github.com/Kryptonit3/Counter" target="_blank">n&agrave;y</a>. Nếu bạn quyết định d&ugrave;ng package th&igrave; bạn c&oacute; thể dừng đọc b&agrave;i n&agrave;y ở đ&acirc;y được rồi <img alt="😃" class="emoji" draggable="false" src="https://twemoji.maxcdn.com/2/72x72/1f603.png" /></p>
+
+<p>OK, ch&uacute;ng ta c&ugrave;ng nhau bắt đầu nh&eacute; Đầu ti&ecirc;n ch&uacute;ng ta sẽ tạo table posts sử dụng lệnh quen thuộc sau:</p>
+
+<p><code>php artisan make:migration create_posts_table --create=&quot;posts&quot;</code></p>
+
+<p>Tiếp đến l&agrave; th&ecirc;m một số fields v&agrave;o table posts như sau:</p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">public function up()
+{
+    Schema::create(&#39;posts&#39;, function (Blueprint $table)
+    {
+        $table-&gt;increments(&#39;id&#39;);
+        $table-&gt;string(&#39;title&#39;);
+        $table-&gt;text(&#39;content&#39;);
+        $table-&gt;integer(&#39;view_count&#39;)-&gt;default(0);
+        $table-&gt;timestamps();
+    });
+}
+</code></pre>
+
+<p>Tiếp theo, chạy lệnh sau để n&oacute; sinh table posts trong Database nh&eacute;</p>
+
+<p><code>php artisan migrate</code></p>
+
+<p>Ch&uacute;ng ta sẽ tạo tiếp Model Post, Controller PostsController v&agrave; Route.</p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">namespace App\Demo;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    protected $fillable = [ &#39;title&#39;, &#39;content&#39; ];
+}
+</code></pre>
+
+<p><code>php artisan make:controller PostsController</code></p>
+
+<p><code>Route::resource(&#39;posts&#39;, &#39;PostsController&#39;);</code></p>
+
+<p>Để tăng số lượt xem của post m&igrave;nh cần sử dụng Event trong Laravel, n&oacute; cho ph&eacute;p ch&uacute;ng ta k&iacute;ch hoạt c&aacute;c h&agrave;nh động ứng với c&aacute;c sự kiện tương ứng. C&oacute; thể bạn đ&atilde; sử dụng n&oacute; khi l&agrave;m việc với Eloquent rồi phải kh&ocirc;ng n&agrave;o, n&oacute; đặt biệt hữu dụng trong trường hợp bạn muốn validate Model khi c&aacute;c h&agrave;nh động created,updated&hellip; được thực hiện. C&aacute;c bạn c&oacute; thể tham khảo th&ecirc;m tại <a href="https://laravel.com/docs/5.4/eloquent#events" target="_blank">link</a> n&agrave;y nh&eacute;. Vậy th&igrave; l&agrave;m c&aacute;ch n&agrave;o để ch&uacute;ng ta c&oacute; thể apply n&oacute; v&agrave;o chức năng đếm số lượt xem b&agrave;i post của ch&uacute;ng ta. Đầu ti&ecirc;n ch&uacute;ng ta sẽ tạo một Event m&agrave; n&oacute; sẽ được k&iacute;ch hoạt mỗi khi người d&ugrave;ng view b&agrave;i post. Muốn t&iacute;nh lượt xem cho page n&agrave;o th&igrave; ta chỉ cần hook Event n&agrave;y v&agrave;o l&agrave; xong.Với c&aacute;ch l&agrave;m n&agrave;y ch&uacute;ng ta đang break xữ l&yacute; logic ra khỏi controller v&agrave; viết n&oacute; trong một class chuy&ecirc;n biệt hơn, việc n&agrave;y l&agrave;m cho code trở n&ecirc;n clear v&agrave; dễ maintain hơn nhiều phải kh&ocirc;ng n&agrave;o. B&acirc;y giờ th&igrave; controller sẽ đơn giản v&agrave; ngắn gọn như sau:</p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">use App\Demo\Post;
+
+public function show($id)
+{
+    $post = Post::find($id);
+    Event::fire(&#39;posts.view&#39;, $post);
+
+    return View::make(&#39;posts.show&#39;)-&gt;withPost($post);
+}
+</code></pre>
+
+<p>Laravel cho ph&eacute;p ch&uacute;ng ta đăng k&yacute; một lớp đ&oacute;ng vai tr&ograve; lắng nghe sự kiện v&agrave; mặc định n&oacute; sẽ gọi phương thức handle của lớp n&agrave;y để xữ l&yacute; mỗi khi sự kiện được k&iacute;ch hoạt.</p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">namespace App\Demo\Events;
+
+use App\Demo\Post;
+
+class ViewPostHandler
+{
+    public function handle(Post $post)
+    {
+        $post-&gt;increment(&#39;view_count&#39;);
+    }
+}
+</code></pre>
+
+<p>Tiếp theo l&agrave; bước đăng k&yacute;. Bạn c&oacute; thể đăng k&yacute; trong phương thức boot của EventServiceProvider. <code>Event::listen(&#39;posts.view&#39;, &#39;App\Demo\Events\ViewPostHandler&#39;);</code></p>
+
+<p>B&acirc;y giờ mỗi l&uacute;c b&agrave;i post được hiển thị th&igrave; sự kiện &quot;post.view&quot; được k&iacute;ch hoạt v&agrave; n&oacute; sẽ tăng số lượt view trang l&ecirc;n 1.Nhưng điều g&igrave; sẽ x&atilde;y ra nếu người d&ugrave;ng v&agrave;o xem một b&agrave;i post v&agrave; nhấn F5 li&ecirc;n tục. Số lượt view sẽ tăng li&ecirc;n tục, kh&ocirc;ng ổn, ch&uacute;ng ta sẽ sử dụng Session v&agrave; Middleware để giải quyết vấn đề n&agrave;y. C&aacute;c bạn sửa lại class ViewPostHandler như sau nh&eacute;</p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">namespace App\Demo\Events;
+
+use App\Demo\Post;
+use Illuminate\Session\Store;
+
+class ViewPostHandler
+{
+    private $session;
+
+    public function __construct(Store $session)
+    {
+        $this-&gt;session = $session;
+    }
+
+    public function handle(Post $post)
+	{
+	    if (!$this-&gt;isPostViewed($post))
+	    {
+	        $post-&gt;increment(&#39;view_count&#39;);
+	        $this-&gt;storePost($post);
+	    }
+	}
+
+	private function isPostViewed($post)
+	{
+	    $viewed = $this-&gt;session-&gt;get(&#39;viewed_posts&#39;, []);
+
+	    return array_key_exists($post-&gt;id, $viewed);
+	}
+
+	private function storePost($post)
+	{
+	    $key = &#39;viewed_posts.&#39; . $post-&gt;id;
+
+	    $this-&gt;session-&gt;put($key, time());
+	}
+}
+</code></pre>
+
+<p>Tiếp theo ch&uacute;ng ta sẽ x&acirc;y dựng middleware Filter, với middleware n&agrave;y th&igrave; ch&uacute;ng ta chỉ cho ph&eacute;p tăng biến đếm view_count sau một khoảng thời gian nhất định (ở đ&acirc;y m&igrave;nh để 1 giờ)</p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Session\Store;
+use Session;
+
+class Filter
+{
+    private $session;
+
+    public function __construct(Store $session)
+    {
+        $this-&gt;session = $session;
+    }
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        $posts = $this-&gt;getViewedPosts();
+
+        if (!is_null($posts))
+        {
+            $posts = $this-&gt;cleanExpiredViews($posts);
+            $this-&gt;storePosts($posts);
+        }
+
+        return $next($request);
+    }
+
+    private function getViewedPosts()
+    {
+        return $this-&gt;session-&gt;get(&#39;viewed_posts&#39;, null);
+    }
+
+    private function cleanExpiredViews($posts)
+    {
+        $time = time();
+
+        // Let the views expire after one hour.
+        $throttleTime = 3600;
+
+        return array_filter($posts, function ($timestamp) use ($time, $throttleTime)
+        {
+            return ($timestamp + $throttleTime) &gt; $time;
+        });
+    }
+
+    private function storePosts($posts)
+    {
+        $this-&gt;session-&gt;put(&#39;viewed_posts&#39;, $posts);
+    }
+}
+</code></pre>
+
+<p>Bước cuối c&ugrave;ng l&agrave; đăng k&yacute; middleware n&agrave;y trong Kernel v&agrave; th&ecirc;m middleware v&agrave;o cho route <code>&#39;filter&#39; =&gt; \App\Http\Middleware\Filter::class,</code></p>
+
+<pre class="prettyprint" data-filename="">
+<code class="prettyprint">Route::group([&#39;middleware&#39; =&gt; &#39;filter&#39;], function() {
+    Route::resource(&#39;posts&#39;, &#39;PostsController&#39;);
+});
+</code></pre>
+
+<p>Như vậy l&agrave; m&igrave;nh đ&atilde; ho&agrave;n th&agrave;nh xong chức năng đếm số lượt xem trang rồi, kh&aacute; đơn giản phải kh&ocirc;ng n&agrave;o, cảm ơn c&aacute;c bạn đ&atilde; đọc.</p>
+</div>

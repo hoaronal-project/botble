@@ -17,4 +17,14 @@ Route::group(['prefix'=>'test'], function (){
     Route::get('news',[
         'uses' => 'TestController@crawlNews'
     ]);
+    Route::get('views',[
+        'uses' => 'TestController@getTestViews'
+    ]);
+    Route::get('find',[
+        'uses' => 'TestController@find_replace'
+    ]);
+    Route::get('p/{id?}',[
+        'as' => 'test.detail',
+        'uses' => 'TestController@getDetails'
+    ]);
 });
