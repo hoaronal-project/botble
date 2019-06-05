@@ -57,7 +57,8 @@ class PostCrawl extends Model
         'status',
         'author_id',
         'author_type',
-        'image_link'
+        'image_link',
+        'category'
     ];
 
     /**

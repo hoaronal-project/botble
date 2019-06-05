@@ -11,10 +11,7 @@
 |
 */
 Route::group(['prefix'=>'test'], function (){
-   Route::get('test1',[
+   Route::get('test',[
        'uses' => 'TestController@test'
    ]);
-    Route::get('test2',[
-        'uses' => 'TestController@test1'
-    ]);
 });
