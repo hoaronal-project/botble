@@ -40,6 +40,7 @@ class News extends Eloquent
         'ordering',
         'source',
         'is_crawled',
+        'slug',
     ];
 
     /**

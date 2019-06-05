@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\PostCrawl;
 use Botble\News\Models\News;
 use Goutte\Client;
+use Illuminate\Support\Str;
 use Symfony\Component\CssSelector\CssSelectorConverter;
 
 include('../app/crawl/simple_html_dom.php');
@@ -57,7 +58,7 @@ class TestController
 //        \Artisan::call('migrate:refresh');
         $client = new Client();
         $converter = new CssSelectorConverter();
-        $crawler = $client->request('GET', 'https://techtalk.vn/category/tam-su-coder');
+        $crawler = $client->request('GET', 'https://techtalk.vn/category/su-kien');
 //            dd(get_class_methods($crawler));
         $crawler->filterXPath($converter->toXPath('h3.entry-title a') ?? $converter
                 ->toXPath('h3.entry-title'))
@@ -78,7 +79,8 @@ class TestController
                             'image' => $image,
                             'author_id' => 1,
                             'source' => $url ?? '',
-                            'category_id' => 6,
+                            'category_id' => 1,
+                            'slug' => Str::slug($title)
                         ]);
                     }else{
                         return true;

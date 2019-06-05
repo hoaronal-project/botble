@@ -47,5 +47,9 @@ Route::group(['namespace' => 'Botble\News\Http\Controllers', 'middleware' => 'we
            'as' => 'public.news' ,
             'uses' => 'NewsController@getNews'
         ]);
+        Route::get('{slug}',[
+            'as' => 'public.news.details' ,
+            'uses' => 'NewsController@getNewsDetails'
+        ]);
     });
 });

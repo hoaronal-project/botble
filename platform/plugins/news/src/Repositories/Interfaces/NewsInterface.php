@@ -6,5 +6,4 @@ use Botble\Support\Repositories\Interfaces\RepositoryInterface;
 
 interface NewsInterface extends RepositoryInterface
 {
-
 }

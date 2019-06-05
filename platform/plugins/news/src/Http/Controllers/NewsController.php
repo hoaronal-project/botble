@@ -169,10 +169,26 @@ class NewsController extends BaseController
     public function getNews()
     {
         $params = [];
-        $params['news'] =  $this->newsRepository->all(['categories'])->take(20);
-        if (!empty($params)) {
+        $params['news'] =  $this->newsRepository->all(['categories'])->take(10);
 
+        if (!empty($params)) {
             return Theme::scope('news_index', $params, 'plugins/news::news_index')->render();
+        } else {
+            return abort(404);
+        }
+    }
+
+    /**
+     * @param $slug
+     * @return \Botble\Theme\Facades\Response||\Illuminate\Http\Response|\Response|void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function getNewsDetails($slug)
+    {
+        $params=[];
+        $params['new'] = $this->newsRepository->getFirstBy(['slug'=>$slug],[],['categories']);
+        if (!empty($params)) {
+            return Theme::scope('news_details', $params, 'plugins/news::news_details')->render();
         } else {
             return abort(404);
         }
