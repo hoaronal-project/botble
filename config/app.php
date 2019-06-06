@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Laravel\Tinker\TinkerServiceProvider::class
+,
         /*
          * Application Service Providers...
          */

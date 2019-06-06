@@ -23,7 +23,9 @@
         "botble/theme": "*@dev",
         "botble/widget": "*@dev",
         "fideloper/proxy": "^4.0",
+        "laravel/dusk": "^5.1",
         "laravel/framework": "5.8.*",
+        "laravel/tinker": "^1.0",
         "rap2hpoutre/laravel-log-viewer": "^1.1",
         "spatie/crawler": "^4.4",
         "symfony/css-selector": "^4.3",
@@ -56,6 +58,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
+                "laravel/dusk"
             ]
         }
     },
