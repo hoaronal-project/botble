@@ -23,7 +23,7 @@ class TestController
         $client = new Client();
         $converter = new CssSelectorConverter();
         try {
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i <= 40; $i++) {
                 $crawler = $client->request('GET', 'https://viblo.asia/tags/laravel?page=' . $i . '');
                 $crawler->filterXPath($converter->toXPath('h3 a') ?? $converter->toXPath('h3'))->each(function ($node
                 ) use (
@@ -37,6 +37,7 @@ class TestController
                             $crawler = $client->click($link);
                             $url = $crawler->getUri();
                             $content = $crawler->filterXPath($converter->toXPath('.article-content__body'))->html() ?? null;
+                            $content = '<div class="md-contents article-content__body my-2 flex-fill">'.$content.'</div>';
                             $des = $crawler->filterXPath($converter->toXPath('.article-content__body p'))->text() ?? null;
                             PostCrawl::create([
                                 'name' => $title,
@@ -122,7 +123,7 @@ class TestController
     {
         $find = 'language-none';
         $replace = 'prettyprint';
-        $file = public_path('a.txt');
+        $file = public_path('a.html');
         if (!file_exists($file)) {
             return false;
         } else {
