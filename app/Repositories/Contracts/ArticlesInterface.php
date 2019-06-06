@@ -9,6 +9,10 @@
 namespace App\Repositories\Contracts;
 
 
+/**
+ * @method all()
+ * @method update(array $params, $id)
+ */
 interface ArticlesInterface
 {
 

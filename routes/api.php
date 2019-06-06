@@ -20,7 +20,7 @@ Route::group(['prefix'=>'v1'], function(){
     Route::post('articles',[
         'uses' =>'Api\ArticleController@store'
     ]);
-    Route::put('articles',[
+    Route::put('articles/{id}',[
         'uses' =>'Api\ArticleController@update'
     ]);
     Route::delete('articles/{id}',[
