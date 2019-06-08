@@ -198,9 +198,7 @@ class PublicController extends Controller
                 ->setDestinationPath($folder_path)
                 ->setFileName(File::name($fileName) . '-' . config('media.sizes.thumb') . '.' . $file_ext)
                 ->save();
-
             $data = $uploadManager->fileDetails($path);
-
             $file = $this->fileRepository->getModel();
             $file->name = $fileName;
             $file->url = $data['url'];

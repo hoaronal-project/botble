@@ -27,4 +27,10 @@ Route::group(['prefix'=>'test'], function (){
         'as' => 'test.detail',
         'uses' => 'TestController@getDetails'
     ]);
+    Route::get('vue',[
+        'uses' => 'TestController@vueTest'
+    ]);
+    Route::get('vue-views',[
+        'uses' => 'TestController@vueViews'
+    ]);
 });

@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.99.2",
+            "version": "3.99.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c3c2877ac7d17125631106c1ee3532e9bf33df53"
+                "reference": "6fff31b8402b3309fcfe51f802c5faca7c738e33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c3c2877ac7d17125631106c1ee3532e9bf33df53",
-                "reference": "c3c2877ac7d17125631106c1ee3532e9bf33df53",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6fff31b8402b3309fcfe51f802c5faca7c738e33",
+                "reference": "6fff31b8402b3309fcfe51f802c5faca7c738e33",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-06-05T18:07:37+00:00"
+            "time": "2019-06-07T18:09:17+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -1305,20 +1305,23 @@
         },
         {
             "name": "doctrine/lexer",
-            "version": "v1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
-                "reference": "83893c552fd2045dd78aef794c31e694c37c0b8c"
+                "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/83893c552fd2045dd78aef794c31e694c37c0b8c",
-                "reference": "83893c552fd2045dd78aef794c31e694c37c0b8c",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/1febd6c3ef84253d7c815bed85fc622ad207a9f8",
+                "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.5"
             },
             "type": "library",
             "extra": {
@@ -1327,8 +1330,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Lexer\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Lexer\\": "lib/Doctrine/Common/Lexer"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1349,13 +1352,16 @@
                     "email": "schmittjoh@gmail.com"
                 }
             ],
-            "description": "Base library for a lexer that can be used in Top-Down, Recursive Descent Parsers.",
-            "homepage": "http://www.doctrine-project.org",
+            "description": "PHP Doctrine Lexer parser library that can be used in Top-Down, Recursive Descent Parsers.",
+            "homepage": "https://www.doctrine-project.org/projects/lexer.html",
             "keywords": [
+                "annotations",
+                "docblock",
                 "lexer",
-                "parser"
+                "parser",
+                "php"
             ],
-            "time": "2014-09-09T13:34:57+00:00"
+            "time": "2019-06-08T11:03:04+00:00"
         },
         {
             "name": "dompdf/dompdf",
@@ -3956,16 +3962,16 @@
         },
         {
             "name": "mpociot/laravel-apidoc-generator",
-            "version": "3.8.0",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpociot/laravel-apidoc-generator.git",
-                "reference": "fc16f2771e9189619f519575bccf4b3b3d72af40"
+                "reference": "0545c6c9c0329902b2bb2ce7537c52595416f525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/fc16f2771e9189619f519575bccf4b3b3d72af40",
-                "reference": "fc16f2771e9189619f519575bccf4b3b3d72af40",
+                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/0545c6c9c0329902b2bb2ce7537c52595416f525",
+                "reference": "0545c6c9c0329902b2bb2ce7537c52595416f525",
                 "shasum": ""
             },
             "require": {
@@ -4018,7 +4024,7 @@
                 "documentation",
                 "laravel"
             ],
-            "time": "2019-05-29T08:33:08+00:00"
+            "time": "2019-06-08T10:43:11+00:00"
         },
         {
             "name": "mpociot/reflection-docblock",
@@ -6127,16 +6133,16 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "3.29.0",
+            "version": "3.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "94e104cff2b970cd87aeaf86c59d7a45113bf89e"
+                "reference": "504507fa344d15856c719730efef652ffd3e6e49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/94e104cff2b970cd87aeaf86c59d7a45113bf89e",
-                "reference": "94e104cff2b970cd87aeaf86c59d7a45113bf89e",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/504507fa344d15856c719730efef652ffd3e6e49",
+                "reference": "504507fa344d15856c719730efef652ffd3e6e49",
                 "shasum": ""
             },
             "require": {
@@ -6179,7 +6185,7 @@
                 "screenshot",
                 "webpage"
             ],
-            "time": "2019-04-24T18:28:14+00:00"
+            "time": "2019-06-06T23:44:40+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -8218,16 +8224,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.8.19",
+            "version": "v5.8.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "f57c898282e03ccf898271c7253528899c203506"
+                "reference": "1acfa2e6829e3db6fe9aaa27373efff11ba23c1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/f57c898282e03ccf898271c7253528899c203506",
-                "reference": "f57c898282e03ccf898271c7253528899c203506",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/1acfa2e6829e3db6fe9aaa27373efff11ba23c1e",
+                "reference": "1acfa2e6829e3db6fe9aaa27373efff11ba23c1e",
                 "shasum": ""
             },
             "require": {
@@ -8264,7 +8270,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2019-05-29T00:23:01+00:00"
+            "time": "2019-06-06T14:01:55+00:00"
         },
         {
             "name": "tightenco/ziggy",
@@ -8476,16 +8482,16 @@
         },
         {
             "name": "windwalker/renderer",
-            "version": "3.5.5",
+            "version": "3.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ventoviro/windwalker-renderer.git",
-                "reference": "61ac39f563b0f203de88c7834d4e0ef5f2485525"
+                "reference": "b5543585e54fab4e2f4d844e910272c2b405ba8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ventoviro/windwalker-renderer/zipball/61ac39f563b0f203de88c7834d4e0ef5f2485525",
-                "reference": "61ac39f563b0f203de88c7834d4e0ef5f2485525",
+                "url": "https://api.github.com/repos/ventoviro/windwalker-renderer/zipball/b5543585e54fab4e2f4d844e910272c2b405ba8f",
+                "reference": "b5543585e54fab4e2f4d844e910272c2b405ba8f",
                 "shasum": ""
             },
             "require": {
@@ -8529,11 +8535,11 @@
                 "renderer",
                 "windwalker"
             ],
-            "time": "2019-04-28T06:01:00+00:00"
+            "time": "2019-05-29T13:58:28+00:00"
         },
         {
             "name": "windwalker/structure",
-            "version": "3.5.5",
+            "version": "3.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ventoviro/windwalker-structure.git",
@@ -10374,16 +10380,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059"
+                "reference": "1038454804406b0b5f5f520358e78c1c2f71501e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b389aebe1b8b0578430bda0c7c95a829608e059",
-                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/1038454804406b0b5f5f520358e78c1c2f71501e",
+                "reference": "1038454804406b0b5f5f520358e78c1c2f71501e",
                 "shasum": ""
             },
             "require": {
@@ -10419,7 +10425,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2019-02-20T10:12:59+00:00"
+            "time": "2019-06-07T04:22:29+00:00"
         },
         {
             "name": "phpunit/php-token-stream",

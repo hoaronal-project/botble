@@ -13,7 +13,7 @@
                         <div class="col-md-6 category-post">
                             <div class="category_article_body">
                                 <div class="top_article_img">
-                                    <img class="img-responsive" src="{{asset($post->image_link ?? 'No photo')}}" alt="feature-top">
+                                    <img class="img-fluid" width="300px" height="150px" src="{{asset($post->image_link ?? 'No photo')}}" alt="feature-top">
                                 </div>
                                 <!-- row -->
 

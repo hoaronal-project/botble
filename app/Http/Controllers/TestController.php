@@ -107,6 +107,16 @@ class TestController
         return view('test', $data);
     }
 
+    public function vueViews()
+    {
+        return view('vue_load_more');
+    }
+    public function vueTest()
+    {
+        $data = PostCrawl::orderBy('id')->paginate(10);
+        return response()->json($data);
+    }
+
     public function getDetails($id = null)
     {
         $data = [];
