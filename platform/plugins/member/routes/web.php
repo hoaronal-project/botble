@@ -156,6 +156,24 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
                     'uses' => 'SocialController@googleCallback'
                 ]);
             });
+            Route::group(['prefix' => 'github'], function(){
+                Route::get('redirect', [
+                    'as' => 'github.redirect',
+                    'uses' => 'SocialController@githubRedirect'
+                ]);
+                Route::get('callback', [
+                    'uses' => 'SocialController@githubCallback'
+                ]);
+            });
+            Route::group(['prefix' => 'linkedin'], function(){
+                Route::get('redirect', [
+                    'as' => 'linkedin.redirect',
+                    'uses' => 'SocialController@linkedinRedirect'
+                ]);
+                Route::get('callback', [
+                    'uses' => 'SocialController@linkedinCallback'
+                ]);
+            });
         });
 
     });

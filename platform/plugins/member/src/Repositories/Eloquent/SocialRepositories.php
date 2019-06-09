@@ -32,7 +32,7 @@ class SocialRepositories implements SocialInterface
             } else {
                 DB::beginTransaction();
                 $member = new Member([
-                    'facebook_id' => $user->getId() ?? $random->numeric()->size(20)->get(),
+                    $provider.'_id' => $user->getId() ?? $random->numeric()->size(20)->get(),
                     'provider' => $provider,
                     'email' => $user->getEmail() ?? 'email@example.com',
                     'first_name' => $user->getName() ?? 'Social user',
