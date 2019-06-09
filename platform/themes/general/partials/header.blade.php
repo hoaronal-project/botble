@@ -14,7 +14,8 @@
                                             </span>
                         <!-- Time -->
                         <div class="social">
-                            <a class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a>
+                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}"><i
+                                    class="fa fa-facebook"></i></a>
                             <!--Twitter-->
                             <a class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a>
                             <!--Google +-->
@@ -39,8 +40,27 @@
                 <div class="col-md-4">
                     <div class="right_section">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{route('public.member.login') ?? 'javascript:;'}}">Login</a></li>
-                            <li><a href="{{route('public.member.register') ?? 'javascript:;'}}">Register</a></li>
+                            @auth('member')
+                                <li><img width="20px" height="20px"
+                                         src="{{auth()->guard('member')->user()->avatar_url ?? auth()->guard('member')->user()->social_avatar}}"
+                                         alt="Avatar">
+                                </li>
+                                <li>
+                                    <a href="javascript:;">{{auth()->guard('member')->user()->first_name ?? 'Anonymous'}}</a>
+                                </li>
+                                <li>
+                                    <a class="no-underline mr2 black-50 hover-black-70 pv1 ph2 db" style="text-decoration: none;" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="{{ trans('plugins/member::dashboard.header_logout_link') }}">
+                                        <i class="fas fa-sign-out-alt mr1"></i><span class="dn-ns">{{ trans('plugins/member::dashboard.header_logout_link') }}</span>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('public.member.logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @endauth
+                            @guest('member')
+                                <li><a href="{{route('public.member.login') ?? 'javascript:;'}}">Login</a></li>
+                                <li><a href="{{route('public.member.register') ?? 'javascript:;'}}">Register</a></li>
+                            @endguest
                             <li class="dropdown lang">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">En <i
@@ -111,7 +131,9 @@
                                                         </li>
                                                         @php($posts = $category->posts->take(5))
                                                         @foreach($posts as $post)
-                                                            <li><a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}">{{str_limit($post->name,25) ?? 'Updating'}}</a></li>
+                                                            <li>
+                                                                <a href="{{route('public.blog.details')}}/{{$post->slug ?? ''}}">{{str_limit($post->name,25) ?? 'Updating'}}</a>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
                                                 @endforeach

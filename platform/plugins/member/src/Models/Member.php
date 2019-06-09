@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
+/**
+ * @method static whereProvide(string $string)
+ * @method static whereProvider(string $string)
+ */
 class Member extends Authenticatable
 {
     use Notifiable;
@@ -35,6 +39,14 @@ class Member extends Authenticatable
         'confirmed_at',
         'description',
         'gender',
+        'provider',
+        'facebook_id',
+        'google_id',
+        'github_id',
+        'linkedin_id',
+        'social_avatar',
+        'instagram_id',
+        'twitter_id',
     ];
 
     /**

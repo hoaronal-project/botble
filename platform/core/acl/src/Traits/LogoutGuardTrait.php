@@ -31,7 +31,10 @@ trait LogoutGuardTrait
             $request->session()->regenerate();
         }
 
-        return redirect()->to($this->logoutToPath());
+        return redirect()->to($this->logoutToPath())->with([
+            'error'=> false,
+            'message' => 'Đăng xuất thành công'
+        ]);
     }
 
     /**
@@ -42,7 +45,7 @@ trait LogoutGuardTrait
      */
     public function logoutToPath()
     {
-        return '/';
+        return route('public.index');
     }
 
     /**

@@ -1,44 +1,44 @@
 <?php
 
 Route::group([
-    'namespace'  => 'Botble\Member\Http\Controllers',
-    'prefix'     => config('core.base.general.admin_dir'),
+    'namespace' => 'Botble\Member\Http\Controllers',
+    'prefix' => config('core.base.general.admin_dir'),
     'middleware' => ['web', 'auth'],
 ], function () {
     Route::group(['prefix' => 'members'], function () {
         Route::get('', [
-            'as'   => 'member.list',
+            'as' => 'member.list',
             'uses' => 'MemberController@getList',
         ]);
 
         Route::get('create', [
-            'as'   => 'member.create',
+            'as' => 'member.create',
             'uses' => 'MemberController@getCreate',
         ]);
 
         Route::post('create', [
-            'as'   => 'member.create',
+            'as' => 'member.create',
             'uses' => 'MemberController@postCreate',
         ]);
 
         Route::get('edit/{id}', [
-            'as'   => 'member.edit',
+            'as' => 'member.edit',
             'uses' => 'MemberController@getEdit',
         ]);
 
         Route::post('edit/{id}', [
-            'as'   => 'member.edit',
+            'as' => 'member.edit',
             'uses' => 'MemberController@postEdit',
         ]);
 
         Route::get('delete/{id}', [
-            'as'   => 'member.delete',
+            'as' => 'member.delete',
             'uses' => 'MemberController@getDelete',
         ]);
 
         Route::post('delete-many', [
-            'as'         => 'member.delete.many',
-            'uses'       => 'MemberController@postDeleteMany',
+            'as' => 'member.delete.many',
+            'uses' => 'MemberController@postDeleteMany',
             'permission' => 'member.delete',
         ]);
     });
@@ -48,9 +48,9 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
     Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
 
         Route::group([
-            'namespace'  => 'Botble\Member\Http\Controllers',
+            'namespace' => 'Botble\Member\Http\Controllers',
             'middleware' => ['web'],
-            'as'         => 'public.member.',
+            'as' => 'public.member.',
         ], function () {
 
             Route::group(['middleware' => ['member.guest']], function () {
@@ -79,9 +79,9 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
         });
 
         Route::group([
-            'namespace'  => 'Botble\Member\Http\Controllers',
+            'namespace' => 'Botble\Member\Http\Controllers',
             'middleware' => ['web', 'member'],
-            'as'         => 'public.member.',
+            'as' => 'public.member.',
         ], function () {
             Route::group([
                 'prefix' => 'account',
@@ -90,32 +90,32 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
                 Route::post('logout', 'LoginController@logout')->name('logout');
 
                 Route::get('dashboard', [
-                    'as'   => 'dashboard',
+                    'as' => 'dashboard',
                     'uses' => 'PublicController@getDashboard',
                 ]);
 
                 Route::get('settings', [
-                    'as'   => 'settings',
+                    'as' => 'settings',
                     'uses' => 'PublicController@getSettings',
                 ]);
 
                 Route::post('settings', [
-                    'as'   => 'post.settings',
+                    'as' => 'post.settings',
                     'uses' => 'PublicController@postSettings',
                 ]);
 
                 Route::get('security', [
-                    'as'   => 'security',
+                    'as' => 'security',
                     'uses' => 'PublicController@getSecurity',
                 ]);
 
                 Route::put('security', [
-                    'as'   => 'post.security',
+                    'as' => 'post.security',
                     'uses' => 'PublicController@postSecurity',
                 ]);
 
                 Route::post('avatar', [
-                    'as'   => 'avatar',
+                    'as' => 'avatar',
                     'uses' => 'PublicController@postAvatar',
                 ]);
 
@@ -123,13 +123,28 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
 
             Route::group(['prefix' => 'ajax/members'], function () {
                 Route::get('activity-logs', [
-                    'as'   => 'activity-logs',
+                    'as' => 'activity-logs',
                     'uses' => 'PublicController@getActivityLogs',
                 ]);
 
                 Route::post('upload', [
-                    'as'   => 'upload',
+                    'as' => 'upload',
                     'uses' => 'PublicController@postUpload',
+                ]);
+            });
+        });
+        Route::group([
+            'namespace' => 'Botble\Member\Http\Controllers',
+            'middleware' => ['web', 'member.guest'],
+            'as' => 'social.',
+        ], function () {
+            Route::group(['prefix' => 'facebook'], function () {
+                Route::get('redirect', [
+                    'as' => 'facebook.redirect',
+                    'uses' => 'SocialController@facebookRedirect'
+                ]);
+                Route::get('callback', [
+                    'uses' => 'SocialController@facebookCallback'
                 ]);
             });
         });

@@ -148,7 +148,7 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                 'uses' => 'PublicController@getTag',
             ]);
         });
-        Route::group(['middleware' => ['web','member']], function (){
+        Route::group(['middleware' => []], function (){
             Route::get('blog', [
                 'as' => 'public.blog',
                 'uses' => 'PublicController@getBlog'

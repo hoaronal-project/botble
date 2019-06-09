@@ -12,8 +12,10 @@ use Botble\Member\Repositories\Caches\MemberActivityLogCacheDecorator;
 use Botble\Member\Repositories\Caches\MemberCacheDecorator;
 use Botble\Member\Repositories\Eloquent\MemberActivityLogRepository;
 use Botble\Member\Repositories\Eloquent\MemberRepository;
+use Botble\Member\Repositories\Eloquent\SocialRepositories;
 use Botble\Member\Repositories\Interfaces\MemberActivityLogInterface;
 use Botble\Member\Repositories\Interfaces\MemberInterface;
+use Botble\Member\Repositories\Interfaces\SocialInterface;
 use Event;
 use Illuminate\Routing\Events\RouteMatched;
 use Illuminate\Routing\Router;
@@ -68,6 +70,7 @@ class MemberServiceProvider extends ServiceProvider
         $this->app->bind(MemberActivityLogInterface::class, function () {
             return new MemberActivityLogCacheDecorator(new MemberActivityLogRepository(new MemberActivityLog));
         });
+        $this->app->singleton(SocialInterface::class,SocialRepositories::class);
 
         Helper::autoload(__DIR__ . '/../../helpers');
     }

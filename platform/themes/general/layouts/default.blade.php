@@ -101,5 +101,6 @@
 </div>
 {!! Theme::footer() !!}
 @include('main::views.layouts.script')
+@includeIf('main::views.layouts.notify')
 </body>
 </html>
