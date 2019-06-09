@@ -14,17 +14,17 @@
                                             </span>
                         <!-- Time -->
                         <div class="social">
-                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}"><i
+                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}" title="{{trans('plugins/member::social.login.fb')}}"><i
                                     class="fa fa-facebook"></i></a>
                             <!--Twitter-->
-                            <a class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a>
+                            <a class="icons-sm tw-ic"><i class="fa fa-twitter" title="{{trans('plugins/member::social.login.tw')}}"></i></a>
                             <!--Google +-->
-                            <a class="icons-sm inst-ic" href="{{route('social.instagram.redirect')}}"><i class="fa fa-instagram"> </i></a>
-                            <a class="icons-sm inst-ic" href="{{route('social.linkedin.redirect')}}"><i class="fa fa-linkedin"></i></a>
+                            <a class="icons-sm inst-ic" href="{{route('social.instagram.redirect')}}" title="{{trans('plugins/member::social.login.in')}}"><i class="fa fa-instagram"> </i></a>
+                            <a class="icons-sm inst-ic" href="{{route('social.linkedin.redirect')}}" title="{{trans('plugins/member::social.login.li')}}"><i class="fa fa-linkedin"></i></a>
                             <!--Linkedin-->
-                            <a class="icons-sm tmb-ic" href="{{route('social.google.redirect')}}"><i class="fa fa-google"></i></a>
+                            <a class="icons-sm tmb-ic" href="{{route('social.google.redirect')}}" title="{{trans('plugins/member::social.login.gg')}}"><i class="fa fa-google"></i></a>
                             <!--Pinterest-->
-                            <a class="icons-sm rss-ic" href="{{route('social.github.redirect')}}"><i class="fa fa-github-alt"></i></a>
+                            <a class="icons-sm rss-ic" href="{{route('social.github.redirect')}}" title="{{trans('plugins/member::social.login.git')}}"><i class="fa fa-github-alt"></i></a>
                         </div>
                         <!-- Top Social Section -->
                     </div>

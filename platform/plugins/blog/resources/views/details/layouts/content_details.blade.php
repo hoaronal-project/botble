@@ -9,8 +9,10 @@
                         </div>
                         <!-- entity_title -->
 
-                        <div class="entity_meta"><a href="javascript:;" target="_self">{{$detail->created_at->toDateString() ?? 'Updating'}}</a>, by: <a href="javascript:;"
-                                                                                                    target="_self">{{$detail->author->first_name ?? 'Anonymous'}}</a>
+                        <div class="entity_meta"><a href="javascript:;"
+                                                    target="_self">{{$detail->created_at->toDateString() ?? 'Updating'}}</a>,
+                            by: <a href="javascript:;"
+                                   target="_self">{{$detail->author->first_name ?? 'Anonymous'}}</a>
                         </div>
                         <!-- entity_meta -->
 
@@ -28,22 +30,21 @@
                                 <i class="fa fa-eye"></i>
                                 <b>{{$detail->views ?? 0}}</b> <span class="share_ic">Views</span>
                             </a>
-                            <a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a>
-                            <!--Twitter-->
-                            <a href="#" class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a>
-                            <!--Google +-->
-                            <a href="#" class="icons-sm inst-ic"><i class="fa fa-google-plus"> </i></a>
-                            <!--Linkedin-->
-                            <a href="#" class="icons-sm tmb-ic"><i class="fa fa-ge"> </i></a>
-                            <!--Pinterest-->
-                            <a href="#" class="icons-sm rss-ic"><i class="fa fa-rss"> </i></a>
+                        </div>
+                        <div class="social-share">
+                            <ul>
+                                {!! \Share::currentPage(null,[],'<li>','</li>')->facebook() !!}
+                                {!! \Share::currentPage(null,[],'<li>','</li>')->twitter() !!}
+                                {!! \Share::currentPage(null,[],'<li>','</li>')->linkedin('Extra linkedin summary can be passed here') !!}
+                                {!! \Share::currentPage(null,[],'<li>','</li>')->whatsapp() !!}
+                            </ul>
                         </div>
                         <!-- entity_social -->
 
                         <!-- entity_thumb -->
 
                         <div class="entity_content">
-                           {!! $detail->content ?? 'Updating' !!}
+                            {!! $detail->content ?? 'Updating' !!}
                         </div>
                         <!-- entity_content -->
 
@@ -51,7 +52,7 @@
                             <div class="entity_tag">
                                 @php($tags = $detail->tags)
                                 @foreach($tags as $tag)
-                                <span class="blank"><a href="#">{{$tag->name ?? 'No tag'}}</a></span>
+                                    <span class="blank"><a href="#">{{$tag->name ?? 'No tag'}}</a></span>
                                 @endforeach
                             </div>
                             <!-- entity_tag -->

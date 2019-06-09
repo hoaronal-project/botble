@@ -169,6 +169,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Avatar'    => Laravolt\Avatar\Facade::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 

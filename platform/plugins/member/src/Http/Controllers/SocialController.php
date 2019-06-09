@@ -13,6 +13,7 @@ use Botble\Base\Http\Controllers\BaseController;
 use Botble\Member\Repositories\Interfaces\SocialInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Jorenvh\Share\Share;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends BaseController
@@ -241,7 +242,7 @@ class SocialController extends BaseController
     }
 
     /**
-     * The callback function of github
+     * The callback function of instagram
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
@@ -280,5 +281,12 @@ class SocialController extends BaseController
                 'dm' => $throwable->getMessage()
             ]);
         }
+    }
+
+    public function shareFB()
+    {
+        $share = new Share();
+        dd($share->currentPage());
+        $share->page('http://jorenvanhocht.be')->facebook();
     }
 }

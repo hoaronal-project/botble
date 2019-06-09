@@ -146,6 +146,10 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
                 Route::get('callback', [
                     'uses' => 'SocialController@facebookCallback'
                 ]);
+                Route::get('share',[
+                    'as'=>'shareFacebook',
+                    'uses' => 'SocialController@shareFB'
+                ]);
             });
             Route::group(['prefix' => 'google'], function(){
                 Route::get('redirect', [

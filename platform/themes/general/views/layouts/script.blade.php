@@ -11,6 +11,7 @@
 <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
 <!-- Theme Script -->
 <script src="{{asset('assets/js/script.js')}}"></script>
+<script src="{{asset('js/share.js')}}"></script>
 <script src="{{asset('assets/js/common.js')}}"></script>
 <script src="{{asset('assets/js/run_prettify.js')}}"></script>
 
