@@ -19,7 +19,7 @@
                             <!--Twitter-->
                             <a class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a>
                             <!--Google +-->
-                            <a class="icons-sm inst-ic"><i class="fa fa-instagram"> </i></a>
+                            <a class="icons-sm inst-ic" href="{{route('social.instagram.redirect')}}"><i class="fa fa-instagram"> </i></a>
                             <a class="icons-sm inst-ic" href="{{route('social.linkedin.redirect')}}"><i class="fa fa-linkedin"></i></a>
                             <!--Linkedin-->
                             <a class="icons-sm tmb-ic" href="{{route('social.google.redirect')}}"><i class="fa fa-google"></i></a>

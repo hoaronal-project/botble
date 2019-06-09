@@ -230,4 +230,55 @@ class SocialController extends BaseController
             ]);
         }
     }
+
+    /**
+     * Call to redirect function instagram
+     * @return \Redirect
+     */
+    public function instagramRedirect()
+    {
+        return Socialite::driver('instagram')->redirect();
+    }
+
+    /**
+     * The callback function of github
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function instagramCallback()
+    {
+        $drive = 'instagram';
+        $oAuth = Socialite::driver($drive)->user();
+        try {
+            if ($oAuth) :
+                $member = $this->social->getOrCreateMember($oAuth,$drive);
+                auth()->guard("member")->logout();
+                auth()->guard('member')->login($member);
+                if (auth()->guard("member")->check()) {
+                    return redirect()->route('public.index')->with([
+                        'error' => false,
+                        'message' => 'Đăng nhập thành công'
+                    ]);
+                }else{
+                    return redirect()->route('public.index')->with([
+                        'error' => true,
+                        'message' => 'Đăng nhập thất bại',
+                    ]);
+                }
+            else:
+                return redirect()->route('public.index')->with([
+                    'error' => true,
+                    'message' => 'Lỗi kết nối đến app instagram! Vui lòng thử lại sau',
+                ]);
+            endif;
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+            DB::rollBack();
+            return redirect()->route('public.index')->with([
+                'error' => true,
+                'message' => 'unknown error',
+                'dm' => $throwable->getMessage()
+            ]);
+        }
+    }
 }

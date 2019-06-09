@@ -63,4 +63,9 @@ return [
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
         'redirect' => env('LINKEDIN_CALLBACK_URL'),
     ],
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_APP_ID'),
+        'client_secret' => env('INSTAGRAM_APP_SECRET'),
+        'redirect' => env('INSTAGRAM_APP_CALLBACK'),
+    ],
 ];

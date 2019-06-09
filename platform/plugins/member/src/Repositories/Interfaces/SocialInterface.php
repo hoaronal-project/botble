@@ -9,6 +9,9 @@
 namespace Botble\Member\Repositories\Interfaces;
 
 
+/**
+ * @method getOrCreateMember($oAuth, string $drive)
+ */
 interface SocialInterface
 {
 

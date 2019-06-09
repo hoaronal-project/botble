@@ -174,6 +174,15 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
                     'uses' => 'SocialController@linkedinCallback'
                 ]);
             });
+            Route::group(['prefix' => 'instagram'], function(){
+                Route::get('redirect', [
+                    'as' => 'instagram.redirect',
+                    'uses' => 'SocialController@instagramRedirect'
+                ]);
+                Route::get('callback', [
+                    'uses' => 'SocialController@instagramCallback'
+                ]);
+            });
         });
 
     });

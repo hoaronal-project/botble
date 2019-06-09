@@ -12,19 +12,23 @@ namespace Botble\Member\Repositories\Eloquent;
 use Botble\Member\Models\Member;
 use Botble\Member\Repositories\Interfaces\SocialInterface;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Laravolt\Avatar\Avatar;
-use PragmaRX\Random\Random;
 
 class SocialRepositories implements SocialInterface
 {
-    public function getOrCreateMember(ProviderUser $user,$provider)
+    /**
+     * Get member if member is
+     * @param ProviderUser $user
+     * @param string $provider
+     * @return Member
+     * @throws \Exception
+     */
+    public function getOrCreateMember(ProviderUser $user, $provider)
     {
         $member = Member::whereProvider($provider)
-            ->where($provider.'_id', $user->getId())
+            ->where($provider . '_id', $user->getId())
             ->first();
-        $random = new Random();
         $avatar = new Avatar();
         try {
             if ($member && $member != null) {
@@ -32,18 +36,17 @@ class SocialRepositories implements SocialInterface
             } else {
                 DB::beginTransaction();
                 $member = new Member([
-                    $provider.'_id' => $user->getId() ?? $random->numeric()->size(20)->get(),
+                    $provider . '_id' => $user->getId(),
                     'provider' => $provider,
                     'email' => $user->getEmail() ?? 'email@example.com',
                     'first_name' => $user->getName() ?? 'Social user',
                     'social_avatar' => $user->getAvatar() ?? $avatar->create($user->getName()),
-                    'password' => Hash::make('Guest@123')
                 ]);
                 $member->save();
                 DB::commit();
                 return $member;
             }
-        }catch (\Throwable $th){
+        } catch (\Throwable $th) {
             DB::rollBack();
             throw new \Exception($th->getMessage());
         }
