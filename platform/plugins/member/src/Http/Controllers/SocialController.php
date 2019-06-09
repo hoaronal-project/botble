@@ -43,10 +43,11 @@ class SocialController extends BaseController
      */
     public function facebookCallback()
     {
-        $oAuth = Socialite::driver('facebook')->user();
+        $drive = 'facebook';
+        $oAuth = Socialite::driver($drive)->user();
         try {
             if ($oAuth) :
-                $member = $this->social->getOrCreateMember($oAuth);
+                $member = $this->social->getOrCreateMember($oAuth,$drive);
                 auth()->guard("member")->logout();
                 auth()->guard('member')->login($member);
                 if (auth()->guard("member")->check()) {
@@ -66,6 +67,51 @@ class SocialController extends BaseController
                     'message' => 'Lỗi kết nối đến app facebook! Vui lòng thử lại sau',
                 ]);
                 endif;
+        } catch (\Throwable $throwable) {
+            DB::rollBack();
+            return redirect()->route('public.index')->with([
+                'error' => true,
+                'message' => 'unknown error',
+                'dm' => $throwable->getMessage()
+            ]);
+        }
+    }
+
+    /**
+     * Call to redirect function google
+     * @return \Redirect
+     */
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleCallback()
+    {
+        $drive = 'google';
+        $oAuth = Socialite::driver($drive)->user();
+        try {
+            if ($oAuth) :
+                $member = $this->social->getOrCreateMember($oAuth,$drive);
+                auth()->guard("member")->logout();
+                auth()->guard('member')->login($member);
+                if (auth()->guard("member")->check()) {
+                    return redirect()->route('public.index')->with([
+                        'error' => false,
+                        'message' => 'Đăng nhập thành công'
+                    ]);
+                }else{
+                    return redirect()->route('public.index')->with([
+                        'error' => true,
+                        'message' => 'Đăng nhập thất bại',
+                    ]);
+                }
+            else:
+                return redirect()->route('public.index')->with([
+                    'error' => true,
+                    'message' => 'Lỗi kết nối đến app google! Vui lòng thử lại sau',
+                ]);
+            endif;
         } catch (\Throwable $throwable) {
             dd($throwable->getMessage());
             DB::rollBack();

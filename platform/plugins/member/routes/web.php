@@ -147,6 +147,15 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
                     'uses' => 'SocialController@facebookCallback'
                 ]);
             });
+            Route::group(['prefix' => 'google'], function(){
+                Route::get('redirect', [
+                    'as' => 'google.redirect',
+                    'uses' => 'SocialController@googleRedirect'
+                ]);
+                Route::get('callback', [
+                    'uses' => 'SocialController@googleCallback'
+                ]);
+            });
         });
 
     });

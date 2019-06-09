@@ -20,10 +20,11 @@
                             <a class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a>
                             <!--Google +-->
                             <a class="icons-sm inst-ic"><i class="fa fa-instagram"> </i></a>
+                            <a class="icons-sm inst-ic"><i class="fa fa-linkedin"></i></a>
                             <!--Linkedin-->
-                            <a class="icons-sm tmb-ic"><i class="fa fa-tumblr"> </i></a>
+                            <a class="icons-sm tmb-ic" href="{{route('social.google.redirect')}}"><i class="fa fa-google"></i></a>
                             <!--Pinterest-->
-                            <a class="icons-sm rss-ic"><i class="fa fa-rss"> </i></a>
+                            <a class="icons-sm rss-ic"><i class="fa fa-github-alt"></i></a>
                         </div>
                         <!-- Top Social Section -->
                     </div>
@@ -42,7 +43,7 @@
                         <ul class="nav navbar-nav">
                             @auth('member')
                                 <li><img width="20px" height="20px"
-                                         src="{{auth()->guard('member')->user()->avatar_url ?? auth()->guard('member')->user()->social_avatar}}"
+                                         src="{{auth()->guard('member')->user()->social_avatar ?? auth()->guard('member')->user()->avatar_url}}"
                                          alt="Avatar">
                                 </li>
                                 <li>

@@ -19,10 +19,10 @@ use PragmaRX\Random\Random;
 
 class SocialRepositories implements SocialInterface
 {
-    public function getOrCreateMember(ProviderUser $user)
+    public function getOrCreateMember(ProviderUser $user,$provider)
     {
-        $member = Member::whereProvider('facebook')
-            ->where('facebook_id', $user->getId())
+        $member = Member::whereProvider($provider)
+            ->where($provider.'_id', $user->getId())
             ->first();
         $random = new Random();
         $avatar = new Avatar();
@@ -33,9 +33,9 @@ class SocialRepositories implements SocialInterface
                 DB::beginTransaction();
                 $member = new Member([
                     'facebook_id' => $user->getId() ?? $random->numeric()->size(20)->get(),
-                    'provider' => 'facebook',
+                    'provider' => $provider,
                     'email' => $user->getEmail() ?? 'email@example.com',
-                    'first_name' => $user->getName() ?? 'Facebook user',
+                    'first_name' => $user->getName() ?? 'Social user',
                     'social_avatar' => $user->getAvatar() ?? $avatar->create($user->getName()),
                     'password' => Hash::make('Guest@123')
                 ]);
@@ -44,7 +44,6 @@ class SocialRepositories implements SocialInterface
                 return $member;
             }
         }catch (\Throwable $th){
-            dd($th->getMessage());
             DB::rollBack();
             throw new \Exception($th->getMessage());
         }
