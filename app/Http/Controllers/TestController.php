@@ -13,6 +13,7 @@ use Botble\News\Models\News;
 use Goutte\Client;
 use Illuminate\Support\Str;
 use Symfony\Component\CssSelector\CssSelectorConverter;
+use PragmaRX\Tracker\Vendor\Laravel\Facade as Tracker;
 
 include('../app/crawl/simple_html_dom.php');
 
@@ -37,7 +38,7 @@ class TestController
                             $crawler = $client->click($link);
                             $url = $crawler->getUri();
                             $content = $crawler->filterXPath($converter->toXPath('.article-content__body'))->html() ?? null;
-                            $content = '<div class="md-contents article-content__body my-2 flex-fill">'.$content.'</div>';
+                            $content = '<div class="md-contents article-content__body my-2 flex-fill">' . $content . '</div>';
                             $des = $crawler->filterXPath($converter->toXPath('.article-content__body p'))->text() ?? null;
                             PostCrawl::create([
                                 'name' => $title,
@@ -111,6 +112,7 @@ class TestController
     {
         return view('vue_load_more');
     }
+
     public function vueTest()
     {
         $data = PostCrawl::orderBy('id')->paginate(10);
@@ -155,9 +157,14 @@ class TestController
                 }
             }
             fclose($open);
-        echo 'success';
+            echo 'success';
         }
     }
 
+    public function tt1()
+    {
+        $pageViews = Tracker::pageViewsByCountry(60 * 24);
+        dd($pageViews);
+    }
 
 }

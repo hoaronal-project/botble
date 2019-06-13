@@ -24,7 +24,18 @@ class User extends Authenticatable
     use Notifiable;
     use Impersonate;
     use HasApiTokens;
+    private $adminProperties = [
+        'admin',
+        'root',
+        'is_admin',
+        'is_root',
+    ];
+    protected $connection = 'mysql';
 
+    public function getIsAdminAttribute()
+    {
+        return true;
+    }
     /**
      * {@inheritDoc}
      */

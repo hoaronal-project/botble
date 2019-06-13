@@ -170,6 +170,8 @@ return [
         Laravolt\Avatar\ServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
+        PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -232,6 +234,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Avatar'    => Laravolt\Avatar\Facade::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

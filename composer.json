@@ -23,6 +23,7 @@
         "botble/theme": "*@dev",
         "botble/widget": "*@dev",
         "fideloper/proxy": "^4.0",
+        "geoip/geoip": "~1.14",
         "jorenvanhocht/laravel-share": "^2.0",
         "laravel/dusk": "^5.1",
         "laravel/framework": "5.8.*",
@@ -30,12 +31,14 @@
         "laravel/tinker": "^1.0",
         "laravolt/avatar": "^2.2",
         "pragmarx/random": "^0.2.2",
+        "pragmarx/tracker": "^3.3",
         "rap2hpoutre/laravel-log-viewer": "^1.1",
         "socialiteproviders/instagram": "^3.0",
         "spatie/crawler": "^4.4",
         "symfony/css-selector": "^4.3",
         "symfony/dom-crawler": "^4.3",
-        "weidner/goutte": "^1.1"
+        "weidner/goutte": "^1.1",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

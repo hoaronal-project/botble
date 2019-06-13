@@ -5,11 +5,29 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $connection = 'mysql';
+    protected $guard = "admins";
 
+
+    public function getIsAdminAttribute()
+    {
+        return true;
+    }
+
+    public static function check()
+    {
+        return Auth::guard('admins')->check();
+    }
+
+    public static function user()
+    {
+        return Auth::guard('admins')->user();
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -36,4 +54,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

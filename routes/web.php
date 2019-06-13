@@ -34,3 +34,14 @@ Route::group(['prefix'=>'test'], function (){
         'uses' => 'TestController@vueViews'
     ]);
 });
+
+Route::group([
+    'as' => 'tracker.'
+], function (){
+    Route::group(['prefix'=>'tracker'], function (){
+       Route::get('/1',[
+           'as' => 'index',
+           'uses' => 'TestController@tt1'
+       ]);
+    });
+});
