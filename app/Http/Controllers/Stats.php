@@ -6,6 +6,7 @@ use Bllim\Datatables\Datatables;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use PragmaRX\Tracker\Vendor\Laravel\Facade as Tracker;
+use PragmaRX\Tracker\Vendor\Laravel\Models\Route;
 use PragmaRX\Tracker\Vendor\Laravel\Support\Session;
 
 class Stats extends Controller
@@ -80,22 +81,13 @@ class Stats extends Controller
 
     public function route()
     {
-        $datatables_data =
-            [
-                'datatables_columns'    => '
-                { "data" : "id",          "title" : "'.trans('tracker::tracker.id').'", "orderable": true, "searchable": true },
-                { "data" : "client_ip",   "title" : "'.trans('tracker::tracker.ip_address').'", "orderable": true, "searchable": true },
-                { "data" : "country",     "title" : "'.trans('tracker::tracker.country_city').'", "orderable": true, "searchable": true },
-                { "data" : "user",        "title" : "'.trans('tracker::tracker.user').'", "orderable": true, "searchable": true },
-                { "data" : "device",      "title" : "'.trans('tracker::tracker.device').'", "orderable": true, "searchable": true },
-                { "data" : "browser",     "title" : "'.trans('tracker::tracker.browser').'", "orderable": true, "searchable": true },
-                { "data" : "language",    "title" : "'.trans('tracker::tracker.language').'", "orderable": true, "searchable": true },
-                { "data" : "referer",     "title" : "'.trans('tracker::tracker.referer').'", "orderable": true, "searchable": true },
-                { "data" : "pageViews",   "title" : "'.trans('tracker::tracker.page_views').'", "orderable": true, "searchable": true },
-                { "data" : "lastActivity","title" : "'.trans('tracker::tracker.last_activity').'", "orderable": true, "searchable": true },
-            ',
-            ];
-        dd($datatables_data);
+        return View::make('tracker.route')
+            ->with('title', 'Route');
+    }
+
+    public function routeData()
+    {
+        return Datatables::of(Route::query())->make(true);
     }
 
     public function log($uuid)

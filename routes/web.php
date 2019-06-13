@@ -39,9 +39,9 @@ Route::group([
     'as' => 'tracker.'
 ], function (){
     Route::group(['prefix'=>'tracker'], function (){
-       Route::get('/1',[
-           'as' => 'index',
-           'uses' => 'TestController@tt1'
+       Route::get('/route-data',[
+           'as' => 'route',
+           'uses' => 'Stats@routeData'
        ]);
     });
 });
