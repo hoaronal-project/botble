@@ -161,10 +161,4 @@ class TestController
         }
     }
 
-    public function tt1()
-    {
-        $pageViews = Tracker::pageViewsByCountry(60 * 24);
-        dd($pageViews);
-    }
-
 }

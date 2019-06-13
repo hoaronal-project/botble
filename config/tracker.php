@@ -88,7 +88,7 @@ return [
      *
      * Log must be enabled for this option to work.
      */
-    'log_sql_queries' => false,
+    'log_sql_queries' => true,
 
     /*
      * If you prefer to store Tracker data on a different database or connection,
@@ -131,12 +131,12 @@ return [
      *
      * Log must be enabled for this option to work.
      */
-    'log_sql_queries_bindings' => false,
+    'log_sql_queries_bindings' => true,
 
     /*
      * Log events?
      */
-    'log_events' => false,
+    'log_events' => true,
 
     /*
      * Which events do you want to log exactly?
@@ -186,27 +186,27 @@ return [
     /*
      * Do you wish to log the user agent?
      */
-    'log_user_agents' => false,
+    'log_user_agents' => true,
 
     /*
      * Do you wish to log your users?
      */
-    'log_users' => false,
+    'log_users' => true,
 
     /*
      * Do you wish to log devices?
      */
-    'log_devices' => false,
+    'log_devices' => true,
 
     /*
      * Do you wish to log languages?
      */
-    'log_languages' => false,
+    'log_languages' => true,
 
     /*
      * Do you wish to log HTTP referers?
      */
-    'log_referers' => false,
+    'log_referers' => true,
 
     /*
      * Do you wish to log url paths?
@@ -216,7 +216,7 @@ return [
     /*
      * Do you wish to log url queries and query arguments?
      */
-    'log_queries' => false,
+    'log_queries' => true,
 
     /*
      * Do you wish to log routes and route parameters?
@@ -358,7 +358,8 @@ return [
     /*
      * Stats Panel layout view
      */
-    'stats_layout' => 'pragmarx/tracker::layout',
+//    'stats_layout' => 'pragmarx/tracker::layout',
+    'stats_layout' => 'tracker.layout',
 
     /*
      * Stats Panel controllers namespace

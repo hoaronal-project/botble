@@ -41,6 +41,8 @@ class Stats extends Controller
 
     /**
      * @param Session $session
+     * @param $page
+     * @return
      */
     public function showPage($session, $page)
     {
@@ -74,6 +76,26 @@ class Stats extends Controller
             ->with('title', ''.trans('tracker::tracker.visits').'')
             ->with('username_column', Tracker::getConfig('authenticated_user_username_column'))
             ->with('datatables_data', $datatables_data);
+    }
+
+    public function route()
+    {
+        $datatables_data =
+            [
+                'datatables_columns'    => '
+                { "data" : "id",          "title" : "'.trans('tracker::tracker.id').'", "orderable": true, "searchable": true },
+                { "data" : "client_ip",   "title" : "'.trans('tracker::tracker.ip_address').'", "orderable": true, "searchable": true },
+                { "data" : "country",     "title" : "'.trans('tracker::tracker.country_city').'", "orderable": true, "searchable": true },
+                { "data" : "user",        "title" : "'.trans('tracker::tracker.user').'", "orderable": true, "searchable": true },
+                { "data" : "device",      "title" : "'.trans('tracker::tracker.device').'", "orderable": true, "searchable": true },
+                { "data" : "browser",     "title" : "'.trans('tracker::tracker.browser').'", "orderable": true, "searchable": true },
+                { "data" : "language",    "title" : "'.trans('tracker::tracker.language').'", "orderable": true, "searchable": true },
+                { "data" : "referer",     "title" : "'.trans('tracker::tracker.referer').'", "orderable": true, "searchable": true },
+                { "data" : "pageViews",   "title" : "'.trans('tracker::tracker.page_views').'", "orderable": true, "searchable": true },
+                { "data" : "lastActivity","title" : "'.trans('tracker::tracker.last_activity').'", "orderable": true, "searchable": true },
+            ',
+            ];
+        dd($datatables_data);
     }
 
     public function log($uuid)
