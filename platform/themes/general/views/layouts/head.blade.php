@@ -1,6 +1,6 @@
 @php $rnd = time()
 @endphp
-<link href="{{asset('assets/img/favicon.png')}}" rel=icon>
+{{--<link href="{{asset('assets/img/favicon.png')}}" rel=icon>--}}
 <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/fonts/font-awesome/font-awesome.min.css')}}" rel="stylesheet">
@@ -14,6 +14,7 @@
 <!-- Theme Style -->
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/app.css?ver='.$rnd)}}" rel="stylesheet">
+<link href="{{asset('assets/css/all.css')}}" rel="stylesheet">
 <!--Desert theme-->
 <style type="text/css">pre .atn, pre .kwd, pre .tag {font-weight: 700}
     pre.prettyprint {display: block;background-color: #333}

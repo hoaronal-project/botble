@@ -73,7 +73,7 @@
 
                             <div class="article_social">
                                 <span><i class="fa fa-eye"></i><a href="javascript:;">{{$top_view[0]->views ?? 0}}</a>Views</span>
-                                <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
+                                <span><i class="fal fa-comments"></i><a href="#">4</a>Comments</span>
                             </div>
                             <!-- article_social -->
 
@@ -114,7 +114,7 @@
 
                             <div class="article_social">
                                 <span><i class="fa fa-eye"></i><a href="javascript:;">{{$top_view[1]->views ?? 0}}</a>Views</span>
-                                <span><i class="fa fa-comments-o"></i><a href="#">4</a>Comments</span>
+                                <span><i class="fal fa-comments"></i></i><a href="#">4</a>Comments</span>
                             </div>
                             <!-- article_social -->
 

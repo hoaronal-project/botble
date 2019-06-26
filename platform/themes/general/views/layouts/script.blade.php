@@ -1,3 +1,5 @@
+@php $rnd = time()
+@endphp
 <script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/swiper.min.js')}}"></script>
@@ -12,6 +14,7 @@
 <!-- Theme Script -->
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="{{asset('js/share.js')}}"></script>
-<script src="{{asset('assets/js/common.js')}}"></script>
+<script src="{{asset('assets/js/common.js?ver='.$rnd)}}"></script>
 <script src="{{asset('assets/js/run_prettify.js')}}"></script>
+<script src="{{asset('assets/js/all.js')}}"></script>
 

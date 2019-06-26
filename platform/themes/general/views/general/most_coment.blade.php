@@ -21,7 +21,7 @@
                     <a href="javascript:;" target="_self"> <i class="fa fa-eye"></i>{{$post->views ?? 0}}</a> Views
                 </span>
                         <span>
-                    <a href="javascript:;" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
+                    <a href="javascript:;" target="_self"><i class="fal fa-comments"></i>4</a> Comments
                 </span>
                     </div>
                 </div>

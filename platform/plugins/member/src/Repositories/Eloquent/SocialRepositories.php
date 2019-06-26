@@ -12,6 +12,7 @@ namespace Botble\Member\Repositories\Eloquent;
 use Botble\Member\Models\Member;
 use Botble\Member\Repositories\Interfaces\SocialInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Laravolt\Avatar\Avatar;
 

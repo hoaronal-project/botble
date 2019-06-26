@@ -1,0 +1,4 @@
+<?php if ($__env->exists('main::views.home.new_feature')) echo $__env->make('main::views.home.new_feature', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php if ($__env->exists('main::views.home.category_new')) echo $__env->make('main::views.home.category_new', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php if ($__env->exists('main::views.home.supscriber')) echo $__env->make('main::views.home.supscriber', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php /**PATH C:\xampp\htdocs\botble\platform\themes/general/views/index.blade.php ENDPATH**/ ?>

@@ -25,11 +25,11 @@
             {!! Theme::partial('header',[
             'listCategories' => (new Botble\Blog\Repositories\Eloquent\BlogRepositories)->getListCategories(),
              ]) !!}
-{{--            @includeIf('main::partials.header')--}}
+
 
             {!! Theme::content() !!}
 
-            {{--@includeIf('main::partials.footer')--}}
+
             {!! Theme::partial('footer') !!}
         </div>
     </div>

@@ -45,7 +45,7 @@
                                         <div class="media_social">
                                             <span><a href="#"><i
                                                         class="fa fa-eye"></i>{{$feature_news['top_views']->views ?? 0}} </a> views</span>
-                                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
+                                            <span><i class="fal fa-comments"></i><a href="#">4</a> Comments</span>
                                         </div>
                                         <!----media_social------>
                                     </div>
@@ -77,8 +77,7 @@
                                                     <div class="media_social">
                                                     <span><a href="#"><i
                                                                 class="fa fa-eye"></i>{{$post->views ?? 0}}</a> Views</span>
-                                                        <span><a href="#"><i
-                                                                    class="fa fa-comments-o"></i>4</a> Comments</span>
+                                                        <span><a href="#"><i class="fal fa-comments"></i></i>4</a> Comments</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +133,7 @@
                                         <div class="media_social">
                                             <span><a href="#"><i
                                                         class="fa fa-eye"></i>{{$feature_news_js['top_views']->views ?? 0}} </a> views</span>
-                                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
+                                            <span><i class="fal fa-comments"></i><a href="#">4</a> Comments</span>
                                         </div>
                                         <!----media_social------>
                                     </div>
@@ -166,8 +165,7 @@
                                                     <div class="media_social">
                                                     <span><a href="#"><i
                                                                 class="fa fa-eye"></i>{{$post->views ?? 0}}</a> Views</span>
-                                                        <span><a href="#"><i
-                                                                    class="fa fa-comments-o"></i>4</a> Comments</span>
+                                                        <span><a href="#"><i class="fal fa-comments"></i></i>4</a> Comments</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -223,7 +221,7 @@
                                         <div class="media_social">
                                             <span><a href="#"><i
                                                         class="fa fa-eye"></i>{{$feature_news_css['top_views']->views ?? 0}} </a> views</span>
-                                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
+                                            <span><i class="fal fa-comments"></i><a href="#">4</a> Comments</span>
                                         </div>
                                         <!----media_social------>
                                     </div>
@@ -255,8 +253,7 @@
                                                     <div class="media_social">
                                                     <span><a href="#"><i
                                                                 class="fa fa-eye"></i>{{$post->views ?? 0}}</a> Views</span>
-                                                        <span><a href="#"><i
-                                                                    class="fa fa-comments-o"></i>4</a> Comments</span>
+                                                        <span><a href="#"><i class="fal fa-comments"></i></i>4</a> Comments</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -312,7 +309,7 @@
                                         <div class="media_social">
                                             <span><a href="#"><i
                                                         class="fa fa-eye"></i>{{$feature_news_ruby['top_views']->views ?? 0}} </a> views</span>
-                                            <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
+                                            <span><i class="fal fa-comments"></i><a href="#">4</a> Comments</span>
                                         </div>
                                         <!----media_social------>
                                     </div>
@@ -344,8 +341,7 @@
                                                     <div class="media_social">
                                                     <span><a href="#"><i
                                                                 class="fa fa-eye"></i>{{$post->views ?? 0}}</a> Views</span>
-                                                        <span><a href="#"><i
-                                                                    class="fa fa-comments-o"></i>4</a> Comments</span>
+                                                        <span><a href="#"><i class="fal fa-comments"></i></i>4</a> Comments</span>
                                                     </div>
                                                 </div>
                                             </div>
