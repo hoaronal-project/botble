@@ -149,16 +149,21 @@ class BlogRepositories
      * get details of post by slug
      * @param $slug
      * @return Post|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object|$post|void
+     * @throws \Exception
      */
     public function getPostDetails($slug)
     {
-        if ($slug) {
-            $post_id = Slug::where('reference', 'post')->where('key', $slug)->first()->reference_id;
-            $post = Post::with('author', 'tags', 'categories')->where('id', $post_id)->first();
-            return $post;
-        } else {
-            return abort(404);
+        try {
+            $post_category = Slug::where('reference', 'post')->where('key', $slug)->first();
+            if (isset($post_category)) {
+                $post_id = $post_category->reference_id;
+                $post = Post::with('author', 'tags', 'categories')->where('id', $post_id)->first();
+                return $post;
+            } else {
+                abort(404);
+            }
+        } catch (\Throwable $th) {
+           return abort(404,$th->getMessage());
         }
-
     }
 }

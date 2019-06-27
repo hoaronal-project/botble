@@ -13,9 +13,8 @@ use Botble\News\Models\News;
 use Goutte\Client;
 use Illuminate\Support\Str;
 use Symfony\Component\CssSelector\CssSelectorConverter;
-use PragmaRX\Tracker\Vendor\Laravel\Facade as Tracker;
 
-include('../app/crawl/simple_html_dom.php');
+//include('../app/crawl/simple_html_dom.php');
 
 class TestController
 {
@@ -24,8 +23,9 @@ class TestController
         $client = new Client();
         $converter = new CssSelectorConverter();
         try {
-            for ($i = 1; $i <= 40; $i++) {
-                $crawler = $client->request('GET', 'https://viblo.asia/tags/laravel?page=' . $i . '');
+            for ($i = 1; $i <= 10; $i++) {
+                $crawler = $client->request('GET', 'https://viblo.asia/tags/android?page=' . $i . '');
+                dd($crawler);
                 $crawler->filterXPath($converter->toXPath('h3 a') ?? $converter->toXPath('h3'))->each(function ($node
                 ) use (
                     $client,
@@ -44,7 +44,7 @@ class TestController
                                 'name' => $title,
                                 'description' => $des,
                                 'content' => $content,
-                                'image_link' => 'https://viblo.asia/uploads/bd4a537c-99ce-460f-b1c6-d3627cef79fe.png',
+                                'image_link' => 'https://elsnermagentodeveloper.files.wordpress.com/2019/03/laravel-one-of-best-php-web-development-frameworks-for-php-developers.jpg?w=730&h=393',
                                 'author_id' => 1,
                                 'format_type' => $url ?? '',
                                 'category' => 'js',
@@ -128,37 +128,19 @@ class TestController
 
 
     /**
-     * @param bool $case_insensitive
-     * @return bool
+     * @return void
      */
-    public function find_replace($case_insensitive = true)
+    public function find_replace()
     {
-        $find = 'language-none';
-        $replace = 'prettyprint';
+        $find = '<pre class="language-php"';
+        $replace = '<pre class="prettyprint"';
         $file = public_path('a.html');
-        if (!file_exists($file)) {
-            return false;
-        } else {
-            $contents = file_get_contents($file);
-            if ($case_insensitive) {
-                $output = str_ireplace($find, $replace, $contents);
-            } else {
-                $output = str_replace($find, $replace, $contents);
-            }
-            $fopen = fopen($file, 'w');
-            if (!$fopen) {
-                return false;
-            } else {
-                $fwrite = fwrite($fopen, $output);
-                if (!$fwrite) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-            fclose($open);
-            echo 'success';
-        }
+        $contents = file_get_contents($file);
+        $output = str_replace($find, $replace, $contents);
+        $fopen = fopen($file, 'w');
+        $fwrite = fwrite($fopen, $output);
+        fclose($fopen);
+        echo 'success';
     }
 
 }

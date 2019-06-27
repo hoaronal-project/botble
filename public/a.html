@@ -1,186 +1,358 @@
-<div class="md-contents article-content__body my-2 flex-fill">
-    <h3 id="_mo-dau-0">Mở đầu</h3>
+<h3>How to install</h3>
 
-    <p>Khi bạn viết end-to-end tests, Laravel cung cấp một tập hợp c&aacute;c phương thức hữu &iacute;ch gi&uacute;p bạn dễ d&agrave;ng nhấp v&agrave;o một li&ecirc;n kết, điền form, hay submit một form...Laravel sử dụng th&agrave;nh phần Symfony BrowserKit để m&ocirc; phỏng hoạt động của tr&igrave;nh duyệt web. Tuy nhi&ecirc;n, nếu ứng dụng của bạn sử dụng Javascript v&agrave; AJAX để load trang th&igrave; BrowserKit sẽ b&oacute; tay. V&agrave; Dusk sẽ giải quyết vấn đề tr&ecirc;n, nhằm giả lập c&aacute;c thao t&aacute;c như click, điền form, thậm ch&iacute; l&agrave; k&eacute;o v&agrave; thả trong c&aacute;c ứng dụng d&ugrave;ng Javascript. C&oacute; được điều n&agrave;y l&agrave; do Dusk sử dụng ChromeDriver v&agrave; Facebook Php-webdriver. Khi bạn viết application tests, Dusk gửi c&aacute;c lệnh của bạn tới ChromeDriver, sau đ&oacute; tr&ecirc;n Chorme chạy c&aacute;c tests của bạn tr&ecirc;n tr&igrave;nh duyệt v&agrave; b&aacute;o c&aacute;o lại kết quả (tự động chụp v&agrave; lưu screenshot ứng dụng khi chạy test bị fail).</p>
-
-    <h3 id="_cai-dat-1">C&agrave;i đặt</h3>
-
-    <p>C&agrave;i đặt Laravel Dusk bằng composer như sau: <code>composer require laravel/dusk</code> Tiếp theo, ch&uacute;ng ta cần đăng k&yacute; DuskServiceProvider trong ứng dụng. C&oacute; thể l&agrave;m bằng 2 c&aacute;ch như sau:</p>
-
-    <ul>
-        <li>C&aacute;ch 1: Include trong providers array trong file <code>config/app.php</code> : <code>Laravel\Dusk\DuskServiceProvider::class,</code> Với c&aacute;ch n&agrave;y, DuskServiceProvider sẽ được đăng k&yacute; trong ứng dụng cho tất cả c&aacute;c m&ocirc;i trường.</li>
-        <li>C&aacute;ch 2: Đăng k&yacute; DuskServiceProvider trong AppServiceProvider class cho c&aacute;c m&ocirc;i trường cụ thể:</li>
-    </ul>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function register()
-   {
-       if ($this-&gt;app-&gt;environment(&#39;local&#39;, &#39;testing&#39;, &#39;staging&#39;)) {
-          $this-&gt;app-&gt;register(DuskServiceProvider::class);
-       }
-   }
-</code></pre>
-
-    <p>Cuối c&ugrave;ng, ho&agrave;n tất qu&aacute; tr&igrave;nh c&agrave;i đặt: <code>php artisan dusk:install</code> <strong>Ch&uacute; &yacute;: th&ecirc;m APP_URL của bạn v&agrave;o file .env</strong> Khi đ&oacute;, một file Browser được tạo ra trong thư mục tests trong ứng dụng của bạn.</p>
-
-    <h3 id="_our-first-test-2">Our First Test</h3>
-
-    <p>Tạo một Dusk test đầu ti&ecirc;n <code>php artisan dusk:make LoginTest</code> Lệnh tr&ecirc;n sẽ tạo một LoginTst class trong thư mục Browser.</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">class LoginTest extends DuskTestCase
-{
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
-    public function test_I_can_login_successfully()
-    {
-        $this-&gt;browse(function ($browser) {
-            $browser-&gt;visit(&#39;/login&#39;)
-                    -&gt;type(&#39;email&#39;, &#39;viraj@virajkhatavkar.com&#39;)
-                    -&gt;type(&#39;password&#39;, &#39;secret&#39;)
-                    -&gt;press(&#39;Login&#39;)
-                    -&gt;assertSee(&#39;You are logged in!&#39;);
-        });
-    }
-}
-</code></pre>
-
-    <p>Test case ở tr&ecirc;n, cho ph&eacute;p ch&uacute;ng ta kiểm tra xem người d&ugrave;ng c&oacute; thể đăng nhập th&agrave;nh c&ocirc;ng v&agrave;o hệ thống hay kh&ocirc;ng v&agrave; xem tr&ecirc;n trang home với th&ocirc;ng điệp &#39;You are logged in!&#39; Ch&uacute; &yacute;: Để kiểm tra th&agrave;nh c&ocirc;ng ch&uacute;ng ta cần một người d&ugrave;ng thực trong cơ sở dữ liệu với th&ocirc;ng tin t&agrave;i khoản như tr&ecirc;n. Chạy lệnh sau để thực hiện test: <code>php artisan dusk</code> Nếu trong database của bạn tồn tại một t&agrave;i khoản như tr&ecirc;n, khi đ&oacute; kết quả như sau:</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">PHPUnit 5.7.6 by Sebastian Bergmann and contributors.
-
-..                                                                  2 / 2 (100%)
-
-Time: 4.71 seconds, Memory: 10.00MB
-
-OK (2 tests, 2 assertions)
-</code></pre>
-
-    <h3 id="_failed-tests-3">Failed Tests</h3>
-
-    <p>Giả sử, đăng nhập bằng t&agrave;i khoản kh&ocirc;ng tồn tại trong hệ thống</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function test_I_can_login_successfully()
-{
-    $this-&gt;browse(function ($browser) {
-        $browser-&gt;visit(&#39;/login&#39;)
-                -&gt;type(&#39;email&#39;, &#39;viraj123@gmail.com&#39;)
-                -&gt;type(&#39;password&#39;, &#39;secret&#39;)
-                -&gt;press(&#39;Login&#39;)
-                -&gt;assertSee(&#39;You are logged in!&#39;);
-    });
-}
-</code></pre>
-
-    <p>Khi chạy Dusk test kết quả sẽ như sau: <img alt="" class="medium-zoom-image" src="https://viblo.asia/uploads/b450db63-871d-4ae5-a55a-f9d66176f3c4.gif" /> Khi test lỗi, th&igrave; Dusk sẽ chụp m&agrave;n h&igrave;nh của trang v&agrave; lưu trong thư mực screenshots. <img alt="" class="medium-zoom-image" src="https://viblo.asia/uploads/f01de027-13c9-427e-809d-86c9490bf046.png" /> Điểu n&agrave;y, cho ch&uacute;ng ta thấy một biểu hiện trực quan l&yacute; do tại sao thử nghiệm của ch&uacute;ng ta kh&ocirc;ng th&agrave;nh c&ocirc;ng v&agrave; gi&uacute;p cho ch&uacute;ng ta c&oacute; thể x&aacute;c định nhanh ch&oacute;ng vấn đề.</p>
-
-    <h3 id="_testing-ajax-calls-4">Testing AJAX Calls</h3>
-
-    <p>V&iacute; dụ demo: <img alt="" class="medium-zoom-image" src="https://viblo.asia/uploads/5a3616b8-b303-43c8-8a98-b558b136efbf.gif" /> Ch&uacute;ng ta sử dụng AJAX đ&ecirc;t tạo một task mới, sau đ&oacute; điều hướng người d&ugrave;ng tới trang danh s&aacute;ch c&aacute;c task. <code>php artisan dusk:make CreateTaskTest</code> L&ecirc;nh tr&ecirc;n sẽ tạo ra một CreateTaskTest class trong thư mục Browser, v&agrave; viết test như sau:</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function test_I_can_create_task_successfully()
-    {
-        $this-&gt;browse(function ($browser) {
-
-            $browser-&gt;visit(&#39;/tasks/create&#39;)
-                    -&gt;type(&#39;title&#39;, &#39;My Task&#39;)
-                    -&gt;press(&#39;Add Task&#39;)
-                    -&gt;pause(5000)
-                    -&gt;assertPathIs(&#39;/tasks&#39;);
-        });
-    }
-</code></pre>
-
-    <p>Sau đ&oacute; h&atilde;y chạy Dusk test v&agrave; xem kết quả: <img alt="" class="medium-zoom-image" src="https://viblo.asia/uploads/b472488c-6439-4b92-98f7-4a172fc35cab.gif" /> Như bạn thấy, testcase đ&atilde; th&agrave;nh c&ocirc;ng. Ngo&agrave;i ra, ch&uacute;ng ta cũng c&oacute; thể sử dụng waitUntilMissing API của Dusk để test</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function test_I_can_create_task_successfully()
-    {
-        $this-&gt;browse(function ($browser) {
-
-            $browser-&gt;visit(&#39;/tasks/create&#39;)
-                    -&gt;type(&#39;title&#39;, &#39;My Task&#39;)
-                    -&gt;press(&#39;Add Task&#39;)
-                    -&gt;waitUntilMissing(&#39;.btn-primary&#39;)
-                    -&gt;assertPathIs(&#39;/tasks&#39;);
-        });
-    }
-
-</code></pre>
-
-    <p>Bạn c&oacute; thể tham khảo t&agrave;i liệu để t&igrave;m hiểu về c&aacute;c yếu tố chờ đợi kh&aacute;c c&oacute; sẵn trong API.</p>
-
-    <h3 id="_pages-5">Pages</h3>
-
-    <p>Ch&uacute;ng ta sử dụng Pages để tạo lại CreateTaskPage như sau: <code>php artisan dusk:page CreateTaskPage</code> L&ecirc;nh tr&ecirc;n sẽ tạo một CreateTaskPage trong thư mục Pages.</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function url()
-{
-    return &#39;/tasks/create&#39;;
-}
-</code></pre>
-
-    <p>Bất cứ khi n&agrave;o trang n&agrave;y được gọi, Dusk sẽ điều hướng đến url n&agrave;y.</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function assert(Browser $browser)
-{
-    $browser-&gt;assertPathIs($this-&gt;url());
-}
-</code></pre>
-
-    <p>Trong v&iacute; dụ tr&ecirc;n, t&ocirc;i chỉ đơn giản khẳng định rằng url của trang đang hoạt động l&agrave; th&iacute;ch hợp.</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function elements()
-{
-    return [
-        &#39;@addTask&#39; =&gt; &#39;.btn-primary&#39;,
-    ];
-}
-</code></pre>
-
-    <p>C&aacute;c elements method c&oacute; thể c&oacute; bộ chọn sẵn được x&aacute;c định trước. Ch&uacute;ng ta c&oacute; thể x&aacute;c định t&ecirc;n người d&ugrave;ng c&oacute; thể đọc được cho bộ chọn v&agrave; sử dụng lại ch&uacute;ng cho trang n&agrave;y trong c&aacute;c trường hợp thử nghiệm kh&aacute;c nhau. Trong v&iacute; dụ tr&ecirc;n, t&ocirc;i đ&atilde; x&aacute;c định một n&uacute;t chọn cho n&uacute;t <strong>addTask</strong> B&acirc;y giờ ch&uacute;ng ta h&atilde;y sửa đổi CreateTaskTest class v&agrave; sử dụng bộ chọn:</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">public function test_I_can_create_task_successfully()
-    {
-        $this-&gt;browse(function ($browser) {
-
-            $user = factory(User::class)-&gt;create();
-
-            $browser-&gt;loginAs($user)
-                    -&gt;visit(new CreateTaskPage)
-                    -&gt;type(&#39;title&#39;, &#39;My Task&#39;)
-                    -&gt;click(&#39;@addTask&#39;)
-                    -&gt;waitUntilMissing(&#39;@addTask&#39;)
-                    -&gt;assertPathIs(&#39;/tasks&#39;);
-        });
-    }
-</code></pre>
-
-    <p>Giờ th&igrave; chỉ cần chạy Dusk test v&agrave; kết quả như sau:</p>
-
-    <pre class="prettyprint" data-filename="">
-<code class="prettyprint">PHPUnit 5.7.13 by Sebastian Bergmann and contributors.
-
-.                                                                   1 / 1 (100%)
-
-Time: 2.76 seconds, Memory: 12.00MB
-
-OK (1 test, 2 assertions)
-</code></pre>
-
-    <p>Bạn thậm ch&iacute; c&oacute; thể x&aacute;c định c&aacute;c phương ph&aacute;p t&ugrave;y chỉnh để thực hiện một số h&agrave;nh động t&aacute;i sử dụng tr&ecirc;n một trang nhất định. Bạn c&oacute; thể đọc th&ecirc;m về n&oacute; trong <a href="https://laravel.com/docs/5.4/dusk#pages" target="_blank">t&agrave;i liệu</a></p>
-
-    <h3 id="_ket-luan-6">Kết Luận</h3>
-
-    <p>Trong b&agrave;i viết n&agrave;y, t&ocirc;i đ&atilde; giới thiệu về Laravel Dusk, c&aacute;ch c&agrave;i đặt v&agrave; hướng dẫn test một số chức năng cơ bản. Sau khi t&igrave;m hiểu phần n&agrave;y m&igrave;nh thấy n&oacute; thực sự rất hay v&agrave; để hiểu về n&oacute;, h&atilde;y thử thực nghiệm nh&eacute; <img alt="😄" class="emoji" draggable="false" src="https://twemoji.maxcdn.com/2/72x72/1f604.png" />. <strong>T&agrave;i liệu tham khảo:</strong> <a href="https://laravel.com/docs/5.4/dusk" target="_blank">https://laravel.com/docs/5.4/dusk</a></p>
+<hr />
+<div class="highlight highlight-source-shell">
+<pre>
+composer require hisorange/browser-detect</pre>
 </div>
+
+<p>Yep, that&#39;s it! At least for lavarel 5.5 and above, for 5.4 and below please read <a href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#extended-installation">the extended installation</a>.</p>
+
+<h3><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#how-to-use" id="user-content-how-to-use"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h3>
+
+<h3>How to use</h3>
+
+<hr />
+<p>In your classes and controllers just call the <strong>Browser</strong> facade:</p>
+
+<div class="highlight highlight-text-html-php">
+<pre>
+<span class="pl-s1"><span class="pl-c"><span class="pl-c">//</span> Determine the user&#39;s device type is simple as this:</span></span>
+<span class="pl-s1"><span class="pl-c1">Browser</span><span class="pl-k">::</span>isMobile();</span>
+<span class="pl-s1"><span class="pl-c1">Browser</span><span class="pl-k">::</span>isTablet();</span>
+<span class="pl-s1"><span class="pl-c1">Browser</span><span class="pl-k">::</span>isDesktop();</span>
+
+<span class="pl-s1"><span class="pl-c"><span class="pl-c">//</span> Every wondered if it is a bot who loading your page?</span></span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-c1">Browser</span><span class="pl-k">::</span>isBot()) {</span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">&#39;</span>No need to wonder anymore!<span class="pl-pds">&#39;</span></span>;</span>
+<span class="pl-s1">}</span>
+
+<span class="pl-s1"><span class="pl-c"><span class="pl-c">//</span> Check for vendors.</span></span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-c1">Browser</span><span class="pl-k">::</span>isFirefox() <span class="pl-k">||</span> <span class="pl-c1">Browser</span><span class="pl-k">::</span>isOpera()) {</span>
+<span class="pl-s1">    <span class="pl-smi">$output</span> <span class="pl-k">.=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>&lt;script src=&quot;firefox-fix.js&quot;&gt;&lt;/script&gt;<span class="pl-pds">&#39;</span></span>;</span>
+<span class="pl-s1">}</span></pre>
+</div>
+
+<p>Even in your blade templates:</p>
+
+<div class="highlight highlight-text-html-php-blade">
+<pre>
+<span class="pl-c"><span class="pl-c">{{--</span> Directives are built in laravel 5.5 and above! <span class="pl-c">--}}</span></span>
+<span class="pl-en">@mobile</span>
+    &lt;<span class="pl-ent">p</span>&gt;This is the MOBILE template!&lt;/<span class="pl-ent">p</span>&gt;
+    <span class="pl-k">@include</span>(<span class="pl-s1"><span class="pl-s"><span class="pl-pds">&#39;</span>your-mobile-template<span class="pl-pds">&#39;</span></span></span>)
+<span class="pl-en">@endmobile</span>
+
+<span class="pl-en">@tablet</span>
+    &lt;<span class="pl-ent">p</span>&gt;This is the TABLET template!&lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>stylesheet<span class="pl-pds">&quot;</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>tablet.css<span class="pl-pds">&quot;</span></span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Reduce the page size, load what the user need<span class="pl-pds">&quot;</span></span>&gt;
+<span class="pl-en">@endtablet</span>
+
+<span class="pl-en">@desktop</span>
+    &lt;<span class="pl-ent">p</span>&gt;This is the DESKTOP template!&lt;/<span class="pl-ent">p</span>&gt;
+<span class="pl-en">@enddesktop</span>
+
+// Every key is supported.
+<span class="pl-en">@browser</span>(<span class="pl-s1"><span class="pl-s"><span class="pl-pds">&#39;</span>isBot<span class="pl-pds">&#39;</span></span></span>)
+    &lt;<span class="pl-ent">p</span>&gt;Bots are identified too :)&lt;/<span class="pl-ent">p</span>&gt;
+<span class="pl-en">@endbrowser</span></pre>
+</div>
+
+<h3><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#available-api-calls" id="user-content-available-api-calls"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h3>
+
+<h3>Available API calls</h3>
+
+<hr />
+<p>Every call on the <strong>Browser</strong> facade is mirrored to the result object, so the following informations are available on your result too, where you can use the array syntax to access them.</p>
+
+<table>
+    <thead>
+    <tr>
+        <th align="left">Call</th>
+        <th align="left">Response</th>
+        <th align="center">Internal Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="left">Browser::userAgent()</td>
+        <td align="left">Current visitor&#39;s HTTP_USER_AGENT string.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isMobile()</td>
+        <td align="left">Is this a mobile device.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isTablet()</td>
+        <td align="left">Is this a tablet device.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isDesktop()</td>
+        <td align="left">Is this a desktop computer.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isBot()</td>
+        <td align="left">Is this a crawler / bot.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left"><strong>Browser related functions</strong></td>
+        <td align="left">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserName()</td>
+        <td align="left">Browser&#39;s human friendly name like Firefox 3.6, Chrome 42.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserFamily()</td>
+        <td align="left">Browser&#39;s vendor like Chrome, Firefox, Opera.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserVersion()</td>
+        <td align="left">Browser&#39;s human friendly version string.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserVersionMajor()</td>
+        <td align="left">Browser&#39;s <a href="https://semver.org/" rel="nofollow">semantic</a> major version.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserVersionMinor()</td>
+        <td align="left">Browser&#39;s <a href="https://semver.org/" rel="nofollow">semantic</a> minor version.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserVersionPatch()</td>
+        <td align="left">Browser&#39;s <a href="https://semver.org/" rel="nofollow">semantic</a> patch version.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::browserEngine()</td>
+        <td align="left">Browser&#39;s engine like: Blink, WebKit, Gecko.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left"><strong>Operating system related functions</strong></td>
+        <td align="left">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="left">Browser::platformName()</td>
+        <td align="left">Operating system&#39;s human friendly name like Windows XP, MacOS 10.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::platformFamily()</td>
+        <td align="left">Operating system&#39;s vendor like Linux, Windows, MacOS.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::platformVersion()</td>
+        <td align="left">Operating system&#39;s human friendly version like XP, Vista, 10.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::platformVersionMajor()</td>
+        <td align="left">Operating system&#39;s <a href="https://semver.org/" rel="nofollow">semantic</a> major version.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::platformVersionMinor()</td>
+        <td align="left">Operating system&#39;s <a href="https://semver.org/" rel="nofollow">semantic</a> minor version.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::platformVersionPatch()</td>
+        <td align="left">Operating system&#39;s <a href="https://semver.org/" rel="nofollow">semantic</a> patch version.</td>
+        <td align="center"><em>(integer)</em></td>
+    </tr>
+    <tr>
+        <td align="left"><strong>Device related functions</strong></td>
+        <td align="left">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="left">Browser::deviceFamily()</td>
+        <td align="left">Device&#39;s vendor like Samsung, Apple, Huawei.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::deviceModel()</td>
+        <td align="left">Device&#39;s brand name like iPad, iPhone, Nexus.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::mobileGrade()</td>
+        <td align="left">Device&#39;s mobile grade in scale of A,B,C for performance.</td>
+        <td align="center"><em>(string)</em></td>
+    </tr>
+    <tr>
+        <td align="left"><strong>Browser vendor related functions</strong></td>
+        <td align="left">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isChrome()</td>
+        <td align="left">Is this a chrome browser.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isFirefox()</td>
+        <td align="left">Is this a firefox browser.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isOpera()</td>
+        <td align="left">Is this an opera browser.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isSafari()</td>
+        <td align="left">Is this a safari browser.</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isIE()</td>
+        <td align="left">Checks if the browser is an some kind of Internet Explorer (or Trident)</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    <tr>
+        <td align="left">Browser::isIEVersion()</td>
+        <td align="left">Compares to a given IE version</td>
+        <td align="center"><em>(boolean)</em></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#version-support" id="user-content-version-support"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h3>
+
+<h3>Version support</h3>
+
+<hr />
+<p>The following matrix is being continuously tested by the great and awesome <a href="https://travis-ci.org/hisorange" rel="nofollow">Travis CI</a>!</p>
+
+<table>
+    <thead>
+    <tr>
+        <th align="center">-----</th>
+        <th align="center">PHP 5.6</th>
+        <th align="center">PHP 7.0</th>
+        <th align="center">PHP 7.1</th>
+        <th align="center">PHP 7.2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center">Laravel 5.0</td>
+        <td align="center">✓</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+    </tr>
+    <tr>
+        <td align="center">Laravel 5.1</td>
+        <td align="center">✓</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+    </tr>
+    <tr>
+        <td align="center">Laravel 5.2</td>
+        <td align="center">✓</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+    </tr>
+    <tr>
+        <td align="center">Laravel 5.3</td>
+        <td align="center">✓</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+    </tr>
+    <tr>
+        <td align="center">Laravel 5.4</td>
+        <td align="center">✓</td>
+        <td align="center">✓</td>
+        <td align="center">✓</td>
+        <td align="center">✓</td>
+    </tr>
+    <tr>
+        <td align="center">Laravel 5.5</td>
+        <td align="center">-</td>
+        <td align="center">✓</td>
+        <td align="center">✓</td>
+        <td align="center">✓</td>
+    </tr>
+    <tr>
+        <td align="center">Laravel 5.6</td>
+        <td align="center">-</td>
+        <td align="center">-</td>
+        <td align="center">✓</td>
+        <td align="center">✓</td>
+    </tr>
+    </tbody>
+</table>
+
+<p>* <em>Cannot auto test the laravel 5.4 on PHP 7.1 because of version incompatibility between the PHPUnit, Laravel and the package testing library, but the versions are tested manually.</em></p>
+
+<h5><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#laravel-4x-support" id="user-content-laravel-4x-support"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h5>
+
+<h5>Laravel 4.x support</h5>
+
+<p>Laravel 4.x releases are not actively developed but you can still use the browser detect 1.x for it; You can find those releases under the <a href="https://github.com/hisorange/browser-detect/releases">versions</a> tab. Please read the readme from the release use choose, after version 2.x the package was redesigned from the sketch so nor the installation nor the usage is the same.</p>
+
+<h3><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#extended-installation" id="user-content-extended-installation"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h3>
+
+<h3>Extended Installation</h3>
+
+<hr />
+<p>If you are using laravel 5.4 and below you have to add the service provider in your <strong>config/app.php</strong> like this:</p>
+
+<div class="highlight highlight-text-html-php">
+<pre>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">&#39;</span>providers<span class="pl-pds">&#39;</span></span> <span class="pl-k">=&gt;</span> [</span>
+<span class="pl-s1">        <span class="pl-c"><span class="pl-c">//</span> Package Service Providers...</span></span>
+<span class="pl-s1">        <span class="pl-c1">\hisorange\BrowserDetect\</span><span class="pl-c1">ServiceProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+<span class="pl-s1">    ]</span></pre>
+</div>
+
+<p>and don&#39;t forget to add the <strong>facade</strong> in the same file like this:</p>
+
+<div class="highlight highlight-text-html-php">
+<pre>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">&#39;</span>aliases<span class="pl-pds">&#39;</span></span> <span class="pl-k">=&gt;</span> [</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">&#39;</span>Browser<span class="pl-pds">&#39;</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">\hisorange\BrowserDetect\</span><span class="pl-c1">Facade</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+<span class="pl-s1">    ]</span></pre>
+</div>
+
+<h3><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#extended-usage-information" id="user-content-extended-usage-information"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h3>
+
+<h3>Extended Usage Information</h3>
+
+<hr />
+<p>The code is designed to be an easy to use style, so every call you make on the <strong>Browser</strong> facade will access the result object and get the data for you, but you can parse agents other then the current user&#39;s.</p>
+
+<div class="highlight highlight-text-html-php">
+<pre>
+<span class="pl-s1"><span class="pl-c"><span class="pl-c">//</span> When you call the detect function you will get a result object, from the current user&#39;s agent.</span></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-c1">Browser</span><span class="pl-k">::</span>detect();</span>
+
+<span class="pl-s1"><span class="pl-c"><span class="pl-c">//</span> If you wana get browser details from a user agent other then the current user call the parse function.</span></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-c1">Browser</span><span class="pl-k">::</span>parse(<span class="pl-s"><span class="pl-pds">&#39;</span>Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14<span class="pl-pds">&#39;</span></span>);</span></pre>
+</div>
+
+<h3><a aria-hidden="true" class="anchor" href="https://github.com/hisorange/browser-detect?ref=madewithlaravel.com#changlog" id="user-content-changlog"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"></svg></a></h3>
+
+<h3>Changlog</h3>
+
+<hr />
+<p>See the detailed changes in the <a href="https://github.com/hisorange/browser-detect/blob/stable/CHANGELOG.md">CHANGELOG</a> file.</p>

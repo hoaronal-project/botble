@@ -10,38 +10,47 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix'=>'test'], function (){
-   Route::get('test',[
-       'uses' => 'TestController@test'
-   ]);
-    Route::get('news',[
+Route::group(['prefix' => 'test'], function () {
+    Route::get('test', [
+        'uses' => 'TestController@test'
+    ]);
+    Route::get('news', [
         'uses' => 'TestController@crawlNews'
     ]);
-    Route::get('views',[
+    Route::get('views', [
         'uses' => 'TestController@getTestViews'
     ]);
-    Route::get('find',[
+    Route::get('find', [
         'uses' => 'TestController@find_replace'
     ]);
-    Route::get('p/{id?}',[
+    Route::get('p/{id?}', [
         'as' => 'test.detail',
         'uses' => 'TestController@getDetails'
     ]);
-    Route::get('vue',[
+    Route::get('vue', [
         'uses' => 'TestController@vueTest'
     ]);
-    Route::get('vue-views',[
+    Route::get('vue-views', [
         'uses' => 'TestController@vueViews'
     ]);
 });
 
+
+Route::group(['prefix' => 'telegram'], function () {
+    Route::get('/updated-activity', [
+        'as' => 'update',
+        'uses' => 'TelegramBotController@updatedActivity'
+    ]);
+});
+
+
 Route::group([
     'as' => 'tracker.'
-], function (){
-    Route::group(['prefix'=>'tracker'], function (){
-       Route::get('/route-data',[
-           'as' => 'route',
-           'uses' => 'Stats@routeData'
-       ]);
+], function () {
+    Route::group(['prefix' => 'tracker'], function () {
+        Route::get('/route-data', [
+            'as' => 'route',
+            'uses' => 'Stats@routeData'
+        ]);
     });
 });

@@ -172,6 +172,7 @@ return [
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -236,6 +237,7 @@ return [
         'Share' => Jorenvh\Share\ShareFacade::class,
         'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
 
     ],
 

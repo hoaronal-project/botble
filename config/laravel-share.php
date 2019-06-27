@@ -48,5 +48,5 @@ return [
     |
     */
 
-    'fontAwesomeVersion' => 4,
+    'fontAwesomeVersion' => 5,
 ];

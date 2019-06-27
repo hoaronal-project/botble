@@ -1,14 +1,19 @@
 body{
-    p,span,strong,b,i,u{font-family: $main-font;font-size: 15px;color: black;line-height: 25px;}
+    p,strong,b,i,u{font-family: $main-font;font-size: 15px;color: black;line-height: 25px;}
 
 
     pre,code{font-size: 14px;font-family: $mono;}
 
 
-    h1,h2,h3,h4,h5,h6{font-family: Roboto, sans-serif;font-weight: normal;display: block;}
+    h1,h2,h3,h4,h5,h6{font-family: Roboto, sans-serif;font-weight: bold;display: block;}
 
 
-    a{font-family: $titlefont;}
+    a{
+        font-family: $titlefont;
+        &:hover{
+            color: #6610f2;
+        }
+    }
 
 
     h1{font-size: 30px;}
