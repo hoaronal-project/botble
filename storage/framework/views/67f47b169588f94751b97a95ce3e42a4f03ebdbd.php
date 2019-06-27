@@ -16,16 +16,23 @@
                                             </span>
                         <!-- Time -->
                         <div class="social">
-                            <a class="icons-sm fb-ic" href="<?php echo e(route('social.facebook.redirect')); ?>" title="<?php echo e(trans('plugins/member::social.login.fb')); ?>">
+                            <a class="icons-sm fb-ic" href="<?php echo e(route('social.facebook.redirect')); ?>"
+                               title="<?php echo e(trans('plugins/member::social.login.fb')); ?>">
                                 <i class="fab fa-facebook"></i>
                             </a>
                             <!--Google +-->
-                            <a class="icons-sm inst-ic" href="<?php echo e(route('social.instagram.redirect')); ?>" title="<?php echo e(trans('plugins/member::social.login.in')); ?>"><i class="fab fa-instagram"></i></a>
-                            <a class="icons-sm inst-ic" href="<?php echo e(route('social.linkedin.redirect')); ?>" title="<?php echo e(trans('plugins/member::social.login.li')); ?>"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="icons-sm inst-ic" href="<?php echo e(route('social.instagram.redirect')); ?>"
+                               title="<?php echo e(trans('plugins/member::social.login.in')); ?>"><i class="fab fa-instagram"></i></a>
+                            <a class="icons-sm inst-ic" href="<?php echo e(route('social.linkedin.redirect')); ?>"
+                               title="<?php echo e(trans('plugins/member::social.login.li')); ?>"><i
+                                    class="fab fa-linkedin-in"></i></a>
                             <!--Linkedin-->
-                            <a class="icons-sm tmb-ic" href="<?php echo e(route('social.google.redirect')); ?>" title="<?php echo e(trans('plugins/member::social.login.gg')); ?>"><i class="fab fa-google-plus"></i></a>
+                            <a class="icons-sm tmb-ic" href="<?php echo e(route('social.google.redirect')); ?>"
+                               title="<?php echo e(trans('plugins/member::social.login.gg')); ?>"><i
+                                    class="fab fa-google-plus"></i></a>
                             <!--Pinterest-->
-                            <a class="icons-sm rss-ic" href="<?php echo e(route('social.github.redirect')); ?>" title="<?php echo e(trans('plugins/member::social.login.git')); ?>"><i class="fab fa-github"></i></a>
+                            <a class="icons-sm rss-ic" href="<?php echo e(route('social.github.redirect')); ?>"
+                               title="<?php echo e(trans('plugins/member::social.login.git')); ?>"><i class="fab fa-github"></i></a>
                         </div>
                         <!-- Top Social Section -->
                     </div>
@@ -51,10 +58,15 @@
                                     <a href="javascript:;"><?php echo e(auth()->guard('member')->user()->first_name ?? 'Anonymous'); ?></a>
                                 </li>
                                 <li>
-                                    <a class="no-underline mr2 black-50 hover-black-70 pv1 ph2 db" style="text-decoration: none;" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="<?php echo e(trans('plugins/member::dashboard.header_logout_link')); ?>">
-                                        <i class="fas fa-sign-out-alt mr1"></i><span class="dn-ns"><?php echo e(trans('plugins/member::dashboard.header_logout_link')); ?></span>
+                                    <a class="no-underline mr2 black-50 hover-black-70 pv1 ph2 db"
+                                       style="text-decoration: none;" href="#"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                       title="<?php echo e(trans('plugins/member::dashboard.header_logout_link')); ?>">
+                                        <i class="fas fa-sign-out-alt mr1"></i><span
+                                            class="dn-ns"><?php echo e(trans('plugins/member::dashboard.header_logout_link')); ?></span>
                                     </a>
-                                    <form id="logout-form" action="<?php echo e(route('public.member.logout')); ?>" method="POST" style="display: none;">
+                                    <form id="logout-form" action="<?php echo e(route('public.member.logout')); ?>" method="POST"
+                                          style="display: none;">
                                         <?php echo csrf_field(); ?>
                                     </form>
                                 </li>
@@ -140,6 +152,19 @@
                                                     </ul>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             <?php endif; ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Practices
+                                    <span><i class="fa fa-angle-down"></i></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="m-menu-content">
+                                            <ul class="col-sm-3">
+                                                <li><a href="<?php echo e(route('practice.export')); ?>">Fast Excel import/export for Laravel</a></li>
+                                            </ul>
                                         </div>
                                     </li>
                                 </ul>

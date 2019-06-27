@@ -1,0 +1,1 @@
+<?php echo Html::link($href, trans('core/table::general.delete'), ['class' => 'delete-many-entry-trigger', 'data-class-item' => $data_class]); ?><?php /**PATH C:\xampp\htdocs\botble\platform\core/table/resources/views//partials/delete.blade.php ENDPATH**/ ?>

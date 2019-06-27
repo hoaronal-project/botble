@@ -14,16 +14,23 @@
                                             </span>
                         <!-- Time -->
                         <div class="social">
-                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}" title="{{trans('plugins/member::social.login.fb')}}">
+                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}"
+                               title="{{trans('plugins/member::social.login.fb')}}">
                                 <i class="fab fa-facebook"></i>
                             </a>
                             <!--Google +-->
-                            <a class="icons-sm inst-ic" href="{{route('social.instagram.redirect')}}" title="{{trans('plugins/member::social.login.in')}}"><i class="fab fa-instagram"></i></a>
-                            <a class="icons-sm inst-ic" href="{{route('social.linkedin.redirect')}}" title="{{trans('plugins/member::social.login.li')}}"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="icons-sm inst-ic" href="{{route('social.instagram.redirect')}}"
+                               title="{{trans('plugins/member::social.login.in')}}"><i class="fab fa-instagram"></i></a>
+                            <a class="icons-sm inst-ic" href="{{route('social.linkedin.redirect')}}"
+                               title="{{trans('plugins/member::social.login.li')}}"><i
+                                    class="fab fa-linkedin-in"></i></a>
                             <!--Linkedin-->
-                            <a class="icons-sm tmb-ic" href="{{route('social.google.redirect')}}" title="{{trans('plugins/member::social.login.gg')}}"><i class="fab fa-google-plus"></i></a>
+                            <a class="icons-sm tmb-ic" href="{{route('social.google.redirect')}}"
+                               title="{{trans('plugins/member::social.login.gg')}}"><i
+                                    class="fab fa-google-plus"></i></a>
                             <!--Pinterest-->
-                            <a class="icons-sm rss-ic" href="{{route('social.github.redirect')}}" title="{{trans('plugins/member::social.login.git')}}"><i class="fab fa-github"></i></a>
+                            <a class="icons-sm rss-ic" href="{{route('social.github.redirect')}}"
+                               title="{{trans('plugins/member::social.login.git')}}"><i class="fab fa-github"></i></a>
                         </div>
                         <!-- Top Social Section -->
                     </div>
@@ -49,10 +56,15 @@
                                     <a href="javascript:;">{{auth()->guard('member')->user()->first_name ?? 'Anonymous'}}</a>
                                 </li>
                                 <li>
-                                    <a class="no-underline mr2 black-50 hover-black-70 pv1 ph2 db" style="text-decoration: none;" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="{{ trans('plugins/member::dashboard.header_logout_link') }}">
-                                        <i class="fas fa-sign-out-alt mr1"></i><span class="dn-ns">{{ trans('plugins/member::dashboard.header_logout_link') }}</span>
+                                    <a class="no-underline mr2 black-50 hover-black-70 pv1 ph2 db"
+                                       style="text-decoration: none;" href="#"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                       title="{{ trans('plugins/member::dashboard.header_logout_link') }}">
+                                        <i class="fas fa-sign-out-alt mr1"></i><span
+                                            class="dn-ns">{{ trans('plugins/member::dashboard.header_logout_link') }}</span>
                                     </a>
-                                    <form id="logout-form" action="{{ route('public.member.logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('public.member.logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </li>
@@ -138,6 +150,19 @@
                                                     </ul>
                                                 @endforeach
                                             @endisset
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            {{--practices menu--}}
+                            <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Practices
+                                    <span><i class="fa fa-angle-down"></i></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="m-menu-content">
+                                            <ul class="col-sm-3">
+                                                <li><a href="{{route('practice.export')}}">Fast Excel import/export for Laravel</a></li>
+                                            </ul>
                                         </div>
                                     </li>
                                 </ul>

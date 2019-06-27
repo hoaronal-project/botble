@@ -54,3 +54,14 @@ Route::group([
         ]);
     });
 });
+
+Route::group([
+    'as' => 'practice.'
+], function () {
+    Route::group(['prefix' => 'practice'], function () {
+        Route::get('/export-excel', [
+            'as' => 'export',
+            'uses' => 'PracticeController@exportExcel'
+        ]);
+    });
+});

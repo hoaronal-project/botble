@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6c258232b2ef3f1c1bc81785eedf2d7",
+    "content-hash": "a738e718a33d3cb3fb6ab78da366c422",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.102.1",
+            "version": "3.103.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "0fe11c62b118f3362a030e9994e3fe1eeea56172"
+                "reference": "77ed156cc323efcc7912941440c622d5f12ffbce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0fe11c62b118f3362a030e9994e3fe1eeea56172",
-                "reference": "0fe11c62b118f3362a030e9994e3fe1eeea56172",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/77ed156cc323efcc7912941440c622d5f12ffbce",
+                "reference": "77ed156cc323efcc7912941440c622d5f12ffbce",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-06-27T00:22:45+00:00"
+            "time": "2019-06-27T18:15:25+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -265,7 +265,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/api",
-                "reference": "602f3ed45b672fa6626fd6079f8e9519fa47cd30"
+                "reference": "602f3ed45b672fa6626fd6079f8e9519fa47cd30",
+                "shasum": null
             },
             "require": {
                 "barryvdh/laravel-cors": "^0.11.3",
@@ -357,7 +358,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/menu",
-                "reference": "1d70ee1f1cf539c0b725fba5490db6a2577cb504"
+                "reference": "1d70ee1f1cf539c0b725fba5490db6a2577cb504",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -386,7 +388,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/optimize",
-                "reference": "0078316d80fe5b02136d467d1cfc85bd7b741eca"
+                "reference": "0078316d80fe5b02136d467d1cfc85bd7b741eca",
+                "shasum": null
             },
             "require": {
                 "silber/page-cache": "^1.0"
@@ -418,7 +421,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/page",
-                "reference": "ed03272b2b269ede5cee997c98c1a88c6367f835"
+                "reference": "ed03272b2b269ede5cee997c98c1a88c6367f835",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -447,7 +451,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/core",
-                "reference": "3573e258caa5f75f1c54c47c388635e79d0f8e84"
+                "reference": "3573e258caa5f75f1c54c47c388635e79d0f8e84",
+                "shasum": null
             },
             "require": {
                 "barryvdh/laravel-dompdf": "^0.8.2",
@@ -545,7 +550,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/revision",
-                "reference": "d95ff23e797e983b0327bd1076bd0e3749e25f3d"
+                "reference": "d95ff23e797e983b0327bd1076bd0e3749e25f3d",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -574,7 +580,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/seo-helper",
-                "reference": "dcf32fead1dee8791d991e30cdacff5b93810946"
+                "reference": "dcf32fead1dee8791d991e30cdacff5b93810946",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -606,7 +613,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/shortcode",
-                "reference": "354fb720bef18fba643479a931e1f24f7757368c"
+                "reference": "354fb720bef18fba643479a931e1f24f7757368c",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -635,7 +643,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/slug",
-                "reference": "1d6e85cbab706e89d93b269163ffdff531b9c39d"
+                "reference": "1d6e85cbab706e89d93b269163ffdff531b9c39d",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -664,7 +673,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/theme",
-                "reference": "fc6110ebb46c7744e201b99bad4ced38d6d4b6f7"
+                "reference": "fc6110ebb46c7744e201b99bad4ced38d6d4b6f7",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -693,7 +703,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/widget",
-                "reference": "89b0ba9574bbe5d2bb12c73260e48c138c343a63"
+                "reference": "89b0ba9574bbe5d2bb12c73260e48c138c343a63",
+                "shasum": null
             },
             "type": "package",
             "extra": {
@@ -715,6 +726,74 @@
                 }
             ],
             "description": "Widget package for Botble CMS application"
+        },
+        {
+            "name": "box/spout",
+            "version": "v2.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/box/spout.git",
+                "reference": "3681a3421a868ab9a65da156c554f756541f452b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/box/spout/zipball/3681a3421a868ab9a65da156c554f756541f452b",
+                "reference": "3681a3421a868ab9a65da156c554f756541f452b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xmlreader": "*",
+                "ext-zip": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.0"
+            },
+            "suggest": {
+                "ext-iconv": "To handle non UTF-8 CSV files (if \"php-intl\" is not already installed or is too limited)",
+                "ext-intl": "To handle non UTF-8 CSV files (if \"iconv\" is not already installed)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Box\\Spout\\": "src/Spout"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Adrien Loison",
+                    "email": "adrien@box.com"
+                }
+            ],
+            "description": "PHP Library to read and write spreadsheet files (CSV, XLSX and ODS), in a fast and scalable way",
+            "homepage": "https://www.github.com/box/spout",
+            "keywords": [
+                "OOXML",
+                "csv",
+                "excel",
+                "memory",
+                "odf",
+                "ods",
+                "office",
+                "open",
+                "php",
+                "read",
+                "scale",
+                "spreadsheet",
+                "stream",
+                "write",
+                "xlsx"
+            ],
+            "time": "2017-09-25T19:44:35+00:00"
         },
         {
             "name": "chumper/zipper",
@@ -6790,6 +6869,65 @@
             "time": "2018-07-19T23:38:55+00:00"
         },
         {
+            "name": "rap2hpoutre/fast-excel",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/fast-excel.git",
+                "reference": "1731095b20787ecb53b7a9d48032f452454ddd02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/fast-excel/zipball/1731095b20787ecb53b7a9d48032f452454ddd02",
+                "reference": "1731095b20787ecb53b7a9d48032f452454ddd02",
+                "shasum": ""
+            },
+            "require": {
+                "box/spout": "^2.7",
+                "illuminate/database": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+                "illuminate/support": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.*",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rap2hpoutre\\FastExcel\\Providers\\FastExcelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rap2hpoutre\\FastExcel\\": "src/"
+                },
+                "files": [
+                    "src/functions/fastexcel.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2h",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "Fast Excel import/export for Laravel",
+            "keywords": [
+                "csv",
+                "excel",
+                "laravel",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2019-05-31T14:07:40+00:00"
+        },
+        {
             "name": "rap2hpoutre/laravel-log-viewer",
             "version": "v1.2.1",
             "source": {
@@ -10118,7 +10256,8 @@
             "dist": {
                 "type": "path",
                 "url": "./platform/packages/dev-tool",
-                "reference": "c8f379cd5f23c09d6e71797377238cb5b1a08954"
+                "reference": "c8f379cd5f23c09d6e71797377238cb5b1a08954",
+                "shasum": null
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.2",
