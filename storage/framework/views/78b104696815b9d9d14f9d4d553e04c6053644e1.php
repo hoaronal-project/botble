@@ -1,1 +1,0 @@
-<?php echo render_editor($name, $value, Arr::get($attributes, 'with-short-code', false), $attributes); ?><?php /**PATH C:\xampp\htdocs\botble\platform\core/base/resources/views//elements/forms/editor-input.blade.php ENDPATH**/ ?>

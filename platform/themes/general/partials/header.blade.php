@@ -4,18 +4,12 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="left_section">
-                                            <span class="date">
-                                                {{ Carbon\Carbon::now()->englishDayOfWeek ?? ''}} .
-                                            </span>
-                        <!-- Date -->
-                        <span class="time">
-                                                {{Carbon\Carbon::now()->day ?? 0}} {{Carbon\Carbon::now()->englishMonth ?? ''}}
-                            . {{Carbon\Carbon::now()->year ?? 2019}}
-                                            </span>
+                        <!-- Time -->
+                        <span class="date">{{ Carbon\Carbon::now()->englishDayOfWeek ?? ''}} .</span>
+                        <span class="time">{{Carbon\Carbon::now()->day ?? 0}} {{Carbon\Carbon::now()->englishMonth ?? ''}}. {{Carbon\Carbon::now()->year ?? 2019}}</span>
                         <!-- Time -->
                         <div class="social">
-                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}"
-                               title="{{trans('plugins/member::social.login.fb')}}">
+                            <a class="icons-sm fb-ic" href="{{route('social.facebook.redirect')}}" title="{{trans('plugins/member::social.login.fb')}}">
                                 <i class="fab fa-facebook"></i>
                             </a>
                             <!--Google +-->
@@ -38,9 +32,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="logo">
-                        <a href="{{route('public.index') ?? 'javascript:;'}}"><img
-                                src="{{asset('assets/img/logo.png')}}"
-                                alt="Tech NewsLogo"></a>
+                        <a href="{{route('public.index') ?? 'javascript:;'}}"><img src="{{asset('assets/img/logo.png')}}" alt="Tech NewsLogo"></a>
                     </div>
                     <!-- Logo Section -->
                 </div>
@@ -93,12 +85,8 @@
                                             <form role="form">
                                                 <!-- Input Group -->
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                           placeholder="Type Something"> <span class="input-group-btn">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-primary">Search
-                                                                            </button>
-                                                                        </span></div>
+                                                    <input type="text" class="form-control" placeholder="Type Something"> <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-primary">Search</button></span></div>
                                             </form>
                                         </div>
                                     </li>

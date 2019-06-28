@@ -1,6 +1,12 @@
 @php $rnd = time()
 @endphp
 {{--<link href="{{asset('assets/img/favicon.png')}}" rel=icon>--}}
+<meta property="og:url" content="{{route('public.index')}}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="SHARE YOUR EXPERIENCE"/>
+<meta property="og:description" content="SHARE IS THE BEST PRACTICES"/>
+<meta property="og:image"
+      content="https://techvccloud.mediacdn.vn/zoom/650_406/2019/4/23/laravel-15560135934451014989542-crop-15560135974561845680115.jpg"/>
 <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,500' rel='stylesheet' type='text/css'>
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('assets/fonts/font-awesome/font-awesome.min.css')}}" rel="stylesheet">

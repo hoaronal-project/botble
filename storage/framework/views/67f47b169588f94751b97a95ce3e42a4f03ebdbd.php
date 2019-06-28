@@ -4,20 +4,12 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="left_section">
-                                            <span class="date">
-                                                <?php echo e(Carbon\Carbon::now()->englishDayOfWeek ?? ''); ?> .
-                                            </span>
-                        <!-- Date -->
-                        <span class="time">
-                                                <?php echo e(Carbon\Carbon::now()->day ?? 0); ?> <?php echo e(Carbon\Carbon::now()->englishMonth ?? ''); ?>
-
-                            . <?php echo e(Carbon\Carbon::now()->year ?? 2019); ?>
-
-                                            </span>
+                        <!-- Time -->
+                        <span class="date"><?php echo e(Carbon\Carbon::now()->englishDayOfWeek ?? ''); ?> .</span>
+                        <span class="time"><?php echo e(Carbon\Carbon::now()->day ?? 0); ?> <?php echo e(Carbon\Carbon::now()->englishMonth ?? ''); ?>. <?php echo e(Carbon\Carbon::now()->year ?? 2019); ?></span>
                         <!-- Time -->
                         <div class="social">
-                            <a class="icons-sm fb-ic" href="<?php echo e(route('social.facebook.redirect')); ?>"
-                               title="<?php echo e(trans('plugins/member::social.login.fb')); ?>">
+                            <a class="icons-sm fb-ic" href="<?php echo e(route('social.facebook.redirect')); ?>" title="<?php echo e(trans('plugins/member::social.login.fb')); ?>">
                                 <i class="fab fa-facebook"></i>
                             </a>
                             <!--Google +-->
@@ -40,9 +32,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="logo">
-                        <a href="<?php echo e(route('public.index') ?? 'javascript:;'); ?>"><img
-                                src="<?php echo e(asset('assets/img/logo.png')); ?>"
-                                alt="Tech NewsLogo"></a>
+                        <a href="<?php echo e(route('public.index') ?? 'javascript:;'); ?>"><img src="<?php echo e(asset('assets/img/logo.png')); ?>" alt="Tech NewsLogo"></a>
                     </div>
                     <!-- Logo Section -->
                 </div>
@@ -95,12 +85,8 @@
                                             <form role="form">
                                                 <!-- Input Group -->
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                           placeholder="Type Something"> <span class="input-group-btn">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-primary">Search
-                                                                            </button>
-                                                                        </span></div>
+                                                    <input type="text" class="form-control" placeholder="Type Something"> <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-primary">Search</button></span></div>
                                             </form>
                                         </div>
                                     </li>

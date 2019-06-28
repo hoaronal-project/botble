@@ -5,7 +5,7 @@ var Sw_Slide = {
                 autoplay: true,
                 delay: 2000,
                 autoHeight: true,
-                loop:true,
+                loop: true,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -16,8 +16,8 @@ var Sw_Slide = {
             });
         }
     },
-    videoSlide:function () {
-        if (jQuery('.video-section').length){
+    videoSlide: function () {
+        if (jQuery('.video-section').length) {
             var swiper = new Swiper('.swiper-container.swiper-video', {
                 navigation: {
                     nextEl: '.swiper-video .swiper-button-next',
@@ -29,6 +29,20 @@ var Sw_Slide = {
                     clickable: true,
                 },
             });
+        }
+    }
+};
+var Facebook = {
+    sharePost: function (href, redirect_uri) {
+        try {
+            window.location.href = 'https://www.facebook.com/dialog/share?' +
+                'app_id=2036745356633161' +
+                '&display=popup' +
+                '&href=' + href +
+                '&redirect_uri=' + redirect_uri;
+        }
+        catch (e) {
+            console.log(e, e.message);
         }
     }
 };

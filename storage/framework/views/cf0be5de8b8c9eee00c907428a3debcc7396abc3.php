@@ -1,1 +1,0 @@
-<div class="text-center language-column"><?php echo $data; ?></div><?php /**PATH C:\xampp\htdocs\botble\platform\plugins/language/resources/views//partials/language-column.blade.php ENDPATH**/ ?>

@@ -13,6 +13,7 @@
     <?php echo $__env->make('main::views.layouts.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar">
+<?php if ($__env->exists('main::views.script.sdk_js')) echo $__env->make('main::views.script.sdk_js', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <div id="main-wrapper">
     <!-- Page Preloader -->
     <div id="preloader">

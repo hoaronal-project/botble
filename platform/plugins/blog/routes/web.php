@@ -164,6 +164,7 @@ Route::group(['namespace' => 'Botble\Blog\Http\Controllers', 'middleware' => 'we
                 ]);
             });
             Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+            Route::get('post-share-content/{post_id}', 'PostController@getShareContent')->name('share-content');
         });
     }
 });

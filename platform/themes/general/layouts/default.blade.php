@@ -12,6 +12,7 @@
     @include('main::views.layouts.head')
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar">
+@includeIf('main::views.script.sdk_js')
 <div id="main-wrapper">
     <!-- Page Preloader -->
     <div id="preloader">

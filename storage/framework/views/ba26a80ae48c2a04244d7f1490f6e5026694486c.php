@@ -1,1 +1,0 @@
-<a class="text-left" href="<?php echo e($link); ?>" title="<?php echo e($name); ?>" <?php echo $options; ?>><?php echo e($name); ?></a><?php /**PATH C:\xampp\htdocs\botble\platform\core/base/resources/views//elements/tables/link.blade.php ENDPATH**/ ?>
